@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="About - SNRU Clone">
+	<Header />
+	<main class="page-container">
+		<div class="container">
+			<h1>About SNRU</h1>
+			<p>Sakon Nakhon Rajabhat University is a leading educational institution in Northeast Thailand.</p>
+			<div class="content">
+				<h2>Vision</h2>
+				<p>To be a university for local development based on academic excellence and international standards.</p>
+				<h2>Mission</h2>
+				<ul>
+					<li>Provide high-quality education.</li>
+					<li>Conduct research for local and national development.</li>
+					<li>Promote local arts and culture.</li>
+				</ul>
+			</div>
+		</div>
+	</main>
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2026 Sakon Nakhon Rajabhat University Prototype.</p>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	.page-container { padding: 60px 0; min-height: 70vh; }
+	.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+	h1 { color: var(--primary); margin-bottom: 20px; }
+	h2 { color: var(--primary); margin-top: 30px; }
+	.content { line-height: 1.6; }
+	.footer { background: #333; color: #fff; padding: 40px 0; text-align: center; }
+</style>

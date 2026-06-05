@@ -1,10 +1,11 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
 <section class="hero">
 	<div class="hero-content">
 		<h1>Welcome to SNRU</h1>
 		<p>Discover excellence in education and research in Northeast Thailand.</p>
-		<a href="#" class="cta-button">Explore Programs</a>
+		<a href={`${base.replace(/\/$/, '')}/programs`} class="cta-button">Explore Programs</a>
 	</div>
 </section>
 
