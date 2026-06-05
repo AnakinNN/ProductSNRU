@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import NewsSection from '../components/NewsSection.astro';
+---
+
+<Layout title="SNRU Clone - GitHub Pages Prototype">
+	<Header />
+	<main>
+		<Hero />
+		<NewsSection />
+	</main>
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2026 Sakon Nakhon Rajabhat University Prototype. Built with Astro.</p>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	.footer {
+		background: #333;
+		color: #fff;
+		padding: 40px 0;
+		text-align: center;
+		margin-top: 60px;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+</style>

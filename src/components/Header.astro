@@ -1,0 +1,70 @@
+---
+---
+<header>
+	<div class="top-bar">
+		<div class="container">
+			<span>Sakon Nakhon Rajabhat University</span>
+			<div class="top-links">
+				<a href="#">Language</a>
+				<a href="#">Contact</a>
+			</div>
+		</div>
+	</div>
+	<nav class="main-nav">
+		<div class="container">
+			<div class="logo">
+				<a href="/">SNRU CLONE</a>
+			</div>
+			<ul class="nav-links">
+				<li><a href="#">About</a></li>
+				<li><a href="#">Academics</a></li>
+				<li><a href="#">Admissions</a></li>
+				<li><a href="#">E-Services</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>
+
+<style>
+	header {
+		width: 100%;
+		background: var(--white);
+		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	}
+	.top-bar {
+		background: var(--primary);
+		color: var(--white);
+		padding: 5px 0;
+		font-size: 0.8rem;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 20px;
+	}
+	.top-links a {
+		margin-left: 15px;
+	}
+	.main-nav {
+		padding: 15px 0;
+	}
+	.logo a {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: var(--primary);
+	}
+	.nav-links {
+		display: flex;
+		gap: 20px;
+	}
+	.nav-links a {
+		font-weight: 500;
+		transition: color 0.3s;
+	}
+	.nav-links a:hover {
+		color: var(--primary);
+	}
+</style>
