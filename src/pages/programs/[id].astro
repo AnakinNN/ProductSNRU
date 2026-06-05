@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+
+export function getStaticPaths() {
+  return [
+    {params: {id: 'bsc-tech'}, props: {name: 'Bachelor of Science', faculty: 'Science & Technology'}},
+    {params: {id: 'bed-edu'}, props: {name: 'Bachelor of Education', faculty: 'Education'}},
+    {params: {id: 'ba-arts'}, props: {name: 'Bachelor of Arts', faculty: 'Humanities'}},
+    {params: {id: 'bb-mgmt'}, props: {name: 'Bachelor of Business', faculty: 'Management Science'}},
+  ];
+}
+
+const { id } = Astro.params;
+const { name, faculty } = Astro.props;
+---
+
+<Layout title={`${name} - SNRU Clone`}>
+	<Header />
+	<main class="page-container">
+		<div class="container">
+			<a href={import.meta.env.BASE_URL + '/programs'} class="back-link">&larr; Back to Programs</a>
+			<h1>{name}</h1>
+			<p class="faculty-tag">{faculty}</p>
+			
+			<div class="content-section">
+				<h2>Program Overview</h2>
+				<p>This program is designed to provide students with the skills and knowledge required to excel in the field of {faculty}.</p>
+				
+				<h2>Curriculum</h2>
+				<ul>
+					<li>Year 1: Foundation Courses</li>
+					<li>Year 2: Core Major Requirements</li>
+					<li>Year 3: Advanced Specialization</li>
+					<li>Year 4: Internship & Capstone Project</li>
+				</ul>
+			</div>
+		</div>
+	</main>
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2026 Sakon Nakhon Rajabhat University Prototype.</p>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	.page-container { padding: 60px 0; min-height: 70vh; }
+	.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+	.back-link { color: var(--primary); display: block; margin-bottom: 20px; }
+	h1 { color: var(--primary); margin: 0; }
+	.faculty-tag { color: var(--secondary); font-weight: bold; margin-bottom: 40px; }
+	.content-section h2 { color: var(--primary); margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+	.footer { background: #333; color: #fff; padding: 40px 0; text-align: center; }
+</style>

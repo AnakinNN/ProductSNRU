@@ -1,22 +1,27 @@
 ---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const newsItems = [
 	{
 		title: "SNRU Ranks Top for Community Engagement",
 		date: "June 5, 2026",
-		image: "https://images.unsplash.com/photo-1523050335392-9bef867a0578?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-		category: "Awards"
+		image: `${base}/images/award.jpg`,
+		category: "Awards",
+		fallback: "https://images.unsplash.com/photo-1523050335392-9bef867a0578?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
 	},
 	{
 		title: "New Research Grant for Sustainable Agriculture",
 		date: "June 3, 2026",
-		image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-		category: "Research"
+		image: `${base}/images/research.jpg`,
+		category: "Research",
+		fallback: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
 	},
 	{
 		title: "Orientation Week for International Students",
 		date: "May 28, 2026",
-		image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-		category: "Events"
+		image: `${base}/images/event.jpg`,
+		category: "Events",
+		fallback: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
 	}
 ];
 ---
@@ -26,7 +31,11 @@ const newsItems = [
 		<div class="news-grid">
 			{newsItems.map(item => (
 				<article class="news-card">
-					<img src={item.image} alt={item.title} />
+					<img 
+						src={item.image} 
+						alt={item.title} 
+						onerror={`this.onerror=null;this.src='${item.fallback}';`}
+					/>
 					<div class="news-info">
 						<span class="category">{item.category}</span>
 						<h3>{item.title}</h3>
