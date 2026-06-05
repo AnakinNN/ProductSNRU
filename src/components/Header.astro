@@ -3,9 +3,9 @@
 <header>
 	<div class="top-bar">
 		<div class="container">
-			<span>Sakon Nakhon Rajabhat University</span>
+			<span class="university-name">Sakon Nakhon Rajabhat University</span>
 			<div class="top-links">
-				<a href="#">Language</a>
+				<a href="#">TH/EN</a>
 				<a href="#">Contact</a>
 			</div>
 		</div>
@@ -15,6 +15,13 @@
 			<div class="logo">
 				<a href="/">SNRU CLONE</a>
 			</div>
+			
+			<button class="mobile-toggle" aria-label="Toggle Menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+
 			<ul class="nav-links">
 				<li><a href="#">About</a></li>
 				<li><a href="#">Academics</a></li>
@@ -25,11 +32,24 @@
 	</nav>
 </header>
 
+<script>
+	const toggle = document.querySelector('.mobile-toggle');
+	const navLinks = document.querySelector('.nav-links');
+
+	toggle?.addEventListener('click', () => {
+		navLinks?.classList.toggle('active');
+		toggle?.classList.toggle('active');
+	});
+</script>
+
 <style>
 	header {
 		width: 100%;
 		background: var(--white);
 		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		position: sticky;
+		top: 0;
+		z-index: 1000;
 	}
 	.top-bar {
 		background: var(--primary);
@@ -50,6 +70,7 @@
 	}
 	.main-nav {
 		padding: 15px 0;
+		position: relative;
 	}
 	.logo a {
 		font-size: 1.5rem;
@@ -66,5 +87,56 @@
 	}
 	.nav-links a:hover {
 		color: var(--primary);
+	}
+
+	/* Mobile Styles */
+	.mobile-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 5px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 5px;
+	}
+	.mobile-toggle span {
+		display: block;
+		width: 25px;
+		height: 3px;
+		background: var(--primary);
+		transition: 0.3s;
+	}
+
+	@media (max-width: 768px) {
+		.university-name {
+			font-size: 0.7rem;
+		}
+		.mobile-toggle {
+			display: flex;
+		}
+		.nav-links {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			background: var(--white);
+			flex-direction: column;
+			padding: 20px;
+			box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+			gap: 15px;
+		}
+		.nav-links.active {
+			display: flex;
+		}
+		.mobile-toggle.active span:nth-child(1) {
+			transform: translateY(8px) rotate(45deg);
+		}
+		.mobile-toggle.active span:nth-child(2) {
+			opacity: 0;
+		}
+		.mobile-toggle.active span:nth-child(3) {
+			transform: translateY(-8px) rotate(-45deg);
+		}
 	}
 </style>

@@ -1,0 +1,58 @@
+---
+const stats = [
+	{ label: "Students", value: "15,000+", icon: "🎓" },
+	{ label: "Faculty Members", value: "800+", icon: "👨‍🏫" },
+	{ label: "Programs", value: "65", icon: "📚" },
+	{ label: "Years of Excellence", icon: "🏆", value: "30+" }
+];
+---
+<section class="stats-section">
+	<div class="container">
+		<div class="stats-grid">
+			{stats.map(stat => (
+				<div class="stat-card">
+					<div class="icon">{stat.icon}</div>
+					<div class="value">{stat.value}</div>
+					<div class="label">{stat.label}</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.stats-section {
+		background: var(--primary);
+		color: var(--white);
+		padding: 60px 0;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 30px;
+		text-align: center;
+	}
+	.icon {
+		font-size: 2.5rem;
+		margin-bottom: 10px;
+	}
+	.value {
+		font-size: 2.5rem;
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
+	.label {
+		font-size: 1.1rem;
+		opacity: 0.9;
+	}
+	@media (max-width: 768px) {
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+</style>

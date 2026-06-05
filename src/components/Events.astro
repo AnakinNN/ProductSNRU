@@ -1,0 +1,127 @@
+---
+const events = [
+	{
+		day: "15",
+		month: "JUN",
+		title: "International Research Symposium 2026",
+		time: "09:00 AM - 04:30 PM",
+		location: "Main Convention Hall"
+	},
+	{
+		day: "22",
+		month: "JUN",
+		title: "Freshmen Welcome Ceremony",
+		time: "08:30 AM - 12:00 PM",
+		location: "Student Union Plaza"
+	},
+	{
+		day: "05",
+		month: "JUL",
+		title: "Career Fair: Tech & Innovation",
+		time: "10:00 AM - 03:00 PM",
+		location: "Faculty of Science & Tech"
+	}
+];
+---
+<section class="events-section">
+	<div class="container">
+		<h2>Upcoming Events</h2>
+		<div class="events-list">
+			{events.map(event => (
+				<div class="event-item">
+					<div class="date-box">
+						<span class="day">{event.day}</span>
+						<span class="month">{event.month}</span>
+					</div>
+					<div class="event-details">
+						<h3>{event.title}</h3>
+						<div class="meta">
+							<span>🕒 {event.time}</span>
+							<span>📍 {event.location}</span>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.events-section {
+		padding: 60px 0;
+		background: #fff;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+	h2 {
+		color: var(--primary);
+		margin-bottom: 30px;
+	}
+	.events-list {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	.event-item {
+		display: flex;
+		align-items: center;
+		padding: 20px;
+		background: var(--background);
+		border-radius: 8px;
+		transition: transform 0.2s;
+		gap: 20px;
+	}
+	.event-item:hover {
+		transform: translateX(10px);
+		box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+	}
+	.date-box {
+		background: var(--primary);
+		color: var(--white);
+		min-width: 80px;
+		height: 80px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border-radius: 4px;
+	}
+	.day {
+		font-size: 1.5rem;
+		font-weight: bold;
+		line-height: 1;
+	}
+	.month {
+		font-size: 0.9rem;
+		font-weight: bold;
+	}
+	.event-details h3 {
+		margin: 0 0 5px 0;
+		font-size: 1.2rem;
+	}
+	.meta {
+		display: flex;
+		gap: 20px;
+		color: var(--secondary);
+		font-size: 0.9rem;
+	}
+	@media (max-width: 600px) {
+		.event-item {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.date-box {
+			width: 100%;
+			flex-direction: row;
+			gap: 10px;
+			height: 50px;
+		}
+		.meta {
+			flex-direction: column;
+			gap: 5px;
+		}
+	}
+</style>
