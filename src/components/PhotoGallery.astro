@@ -1,0 +1,297 @@
+---
+import fs from 'fs';
+import path from 'path';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const galleryDir = path.resolve('public/images/gallery');
+
+let images = [];
+if (fs.existsSync(galleryDir)) {
+  images = fs.readdirSync(galleryDir)
+    .filter(file => /\.(png|jpg|jpeg|webp|gif)$/i.test(file))
+    .map(file => {
+      const filePath = path.join(galleryDir, file);
+      try {
+        const stat = fs.statSync(filePath);
+        return { name: file, mtime: stat.mtimeMs };
+      } catch (e) {
+        return { name: file, mtime: 0 };
+      }
+    })
+    .sort((a, b) => b.mtime - a.mtime)
+    .map(item => item.name);
+}
+---
+
+<div class="gallery-wrapper">
+  <div class="gallery-header">
+    <div class="header-text">
+      <h2>📸 ภาพกิจกรรมล่าสุด / Recent Activities</h2>
+      <p>ภาพบรรยากาศการเรียน การฝึกปฏิบัติงาน และกิจกรรมเด่นของสาขาวิชา</p>
+    </div>
+    <div class="info-badge">
+      <span class="pulse-icon"></span>
+      <span>อัปเดตแบบเรียลไทม์ผ่าน Git/GitHub</span>
+    </div>
+  </div>
+
+  {images.length === 0 ? (
+    <div class="empty-gallery">
+      <p>ยังไม่มีรูปภาพกิจกรรมในระบบ อัปโหลดไฟล์รูปภาพไปที่ <code>public/images/gallery/</code> เพื่อเริ่มต้น</p>
+    </div>
+  ) : (
+    <div class="gallery-grid">
+      {images.map((img) => (
+        <div class="gallery-card">
+          <div class="card-image-container">
+            <img 
+              src={`${base}/images/gallery/${img}`} 
+              alt="กิจกรรมสาขาวิชาเครื่องกลการผลิตและอุตสาหการ" 
+              loading="lazy"
+            />
+            <div class="card-overlay">
+              <span class="zoom-icon">🔎 ดูรูปขนาดเต็ม</span>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="file-tag">Activity Photo</span>
+            <span class="file-name">{img.replace(/\.[^/.]+$/, "")}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <div class="gallery-instructions">
+    <div class="instruction-card">
+      <h4>💡 วิธีการส่งรูปขึ้นเว็บผ่านโทรศัพท์มือถือ (ฟรี & ง่ายสุด)</h4>
+      <ol>
+        <li>เปิดแอป <strong>GitHub</strong> บนมือถือของคุณ</li>
+        <li>เข้าไปที่โฟลเดอร์ <code>public/images/gallery/</code></li>
+        <li>กดปุ่ม <strong>"+" (Upload files)</strong> เพื่อเลือกรูปถ่ายกิจกรรมล่าสุดจากแกลเลอรีในมือถือของคุณ</li>
+        <li>กด <strong>Commit</strong> เพื่อบันทึกไฟล์ ... ระบบจะสร้างและอัปเดตรูปภาพขึ้นหน้าเว็บจริงให้ทันทีใน 1 นาที!</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gallery-wrapper {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #E2E8F0;
+  }
+  
+  .gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .header-text h2 {
+    color: var(--primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+  }
+  
+  .header-text p {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  
+  .info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  
+  .pulse-icon {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-pink);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 0 rgba(231, 84, 128, 0.7);
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(231, 84, 128, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(231, 84, 128, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(231, 84, 128, 0);
+    }
+  }
+
+  .empty-gallery {
+    background: var(--background);
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px dashed #CBD5E0;
+    color: var(--secondary);
+  }
+  
+  /* Gallery Grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+  
+  .gallery-card {
+    background: var(--background);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #E2E8F0;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  
+  .gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+  }
+  
+  .card-image-container {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    background: #EDF2F7;
+  }
+  
+  .card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+  }
+  
+  .gallery-card:hover .card-image-container img {
+    transform: scale(1.08);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 107, 63, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .gallery-card:hover .card-overlay {
+    opacity: 1;
+  }
+  
+  .zoom-icon {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: 1px solid var(--white);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  
+  .card-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .file-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-pink);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .file-name {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Instructions */
+  .gallery-instructions {
+    border-top: 1px solid #EDF2F7;
+    padding-top: 30px;
+  }
+  
+  .instruction-card {
+    background: var(--background);
+    border-left: 4px solid var(--accent);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .instruction-card h4 {
+    margin: 0 0 10px 0;
+    color: var(--primary-dark);
+    font-weight: 700;
+  }
+  
+  .instruction-card ol {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .instruction-card code {
+    background: #E2E8F0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text);
+  }
+  
+  @media (max-width: 768px) {
+    .gallery-wrapper {
+      padding: 25px;
+    }
+    .gallery-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  }
+</style>
