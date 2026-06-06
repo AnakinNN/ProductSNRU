@@ -1,33 +1,60 @@
 ---
 const stats = [
-	{ label: "นักศึกษาในภาควิชา", labelEn: "Active Students", value: "400+", icon: "🎓" },
-	{ label: "คณาจารย์และบุคลากร", labelEn: "Faculty & Staff", value: "15+", icon: "👨‍🏫" },
-	{ label: "ห้องปฏิบัติการเฉพาะทาง", labelEn: "Specialized Labs", value: "8+", icon: "⚙️" },
-	{ label: "ปีแห่งการก่อตั้งพัฒนา", labelEn: "Years of Development", icon: "🏆", value: "25+" }
+	{
+		label: "นักศึกษาในภาควิชา",
+		labelEn: "Active Students",
+		value: "100+",
+		icon: "🎓",
+	},
+	{
+		label: "คณาจารย์และบุคลากร",
+		labelEn: "Faculty & Staff",
+		value: "18+",
+		icon: "👨‍🏫",
+	},
+	{
+		label: "ห้องปฏิบัติการเฉพาะทาง",
+		labelEn: "Specialized Labs",
+		value: "8+",
+		icon: "⚙️",
+	},
+	{
+		label: "ปีแห่งการก่อตั้งพัฒนา",
+		labelEn: "Years of Development",
+		icon: "🏆",
+		value: "20+",
+	},
 ];
 ---
+
 <section class="stats-section">
 	<div class="container">
 		<div class="stats-grid">
-			{stats.map(stat => (
-				<div class="stat-card">
-					<div class="icon-wrapper">
-						<span class="icon">{stat.icon}</span>
+			{
+				stats.map((stat) => (
+					<div class="stat-card">
+						<div class="icon-wrapper">
+							<span class="icon">{stat.icon}</span>
+						</div>
+						<div class="value">{stat.value}</div>
+						<div class="label-group">
+							<span class="label-th">{stat.label}</span>
+							<span class="label-en">{stat.labelEn}</span>
+						</div>
 					</div>
-					<div class="value">{stat.value}</div>
-					<div class="label-group">
-						<span class="label-th">{stat.label}</span>
-						<span class="label-en">{stat.labelEn}</span>
-					</div>
-				</div>
-			))}
+				))
+			}
 		</div>
 	</div>
 </section>
 
 <style>
 	.stats-section {
-		background: linear-gradient(135deg, var(--primary-dark) 0%, #1A202C 100%);
+		background: linear-gradient(
+			135deg,
+			var(--primary-dark) 0%,
+			#1a202c 100%
+		);
 		color: var(--white);
 		padding: 80px 0;
 		border-top: 4px solid var(--accent);
@@ -92,11 +119,11 @@ const stats = [
 	.label-th {
 		font-size: 1rem;
 		font-weight: 500;
-		color: #E2E8F0;
+		color: #e2e8f0;
 	}
 	.label-en {
 		font-size: 0.8rem;
-		color: #A0AEC0;
+		color: #a0aec0;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 	}
