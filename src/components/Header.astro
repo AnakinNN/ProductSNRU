@@ -1,10 +1,12 @@
 ---
 const base = import.meta.env.BASE_URL;
 ---
+
 <header>
 	<div class="top-bar">
 		<div class="container">
-			<span class="university-name">Sakon Nakhon Rajabhat University</span>
+			<span class="university-name">Sakon Nakhon Rajabhat University</span
+			>
 			<div class="top-links">
 				<a href="#">TH/EN</a>
 				<a href="#">Contact</a>
@@ -14,9 +16,11 @@ const base = import.meta.env.BASE_URL;
 	<nav class="main-nav">
 		<div class="container">
 			<div class="logo">
-				<a href={`${base.replace(/\/$/, '')}/`}>SNRU CLONE</a>
+				<a href={`${base.replace(/\/$/, "")}/`}
+					>สาขาวิชาเครื่องกลการผลิตและอุตสาหการ</a
+				>
 			</div>
-			
+
 			<button class="mobile-toggle" aria-label="Toggle Menu">
 				<span></span>
 				<span></span>
@@ -24,8 +28,10 @@ const base = import.meta.env.BASE_URL;
 			</button>
 
 			<ul class="nav-links">
-				<li><a href={`${base.replace(/\/$/, '')}/about`}>About</a></li>
-				<li><a href={`${base.replace(/\/$/, '')}/programs`}>Programs</a></li>
+				<li><a href={`${base.replace(/\/$/, "")}/about`}>About</a></li>
+				<li>
+					<a href={`${base.replace(/\/$/, "")}/programs`}>Programs</a>
+				</li>
 				<li><a href="#">Admissions</a></li>
 				<li><a href="#">E-Services</a></li>
 			</ul>
@@ -34,12 +40,12 @@ const base = import.meta.env.BASE_URL;
 </header>
 
 <script>
-	const toggle = document.querySelector('.mobile-toggle');
-	const navLinks = document.querySelector('.nav-links');
+	const toggle = document.querySelector(".mobile-toggle");
+	const navLinks = document.querySelector(".nav-links");
 
-	toggle?.addEventListener('click', () => {
-		navLinks?.classList.toggle('active');
-		toggle?.classList.toggle('active');
+	toggle?.addEventListener("click", () => {
+		navLinks?.classList.toggle("active");
+		toggle?.classList.toggle("active");
 	});
 </script>
 
@@ -47,7 +53,7 @@ const base = import.meta.env.BASE_URL;
 	header {
 		width: 100%;
 		background: var(--white);
-		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 		position: sticky;
 		top: 0;
 		z-index: 1000;
@@ -124,7 +130,7 @@ const base = import.meta.env.BASE_URL;
 			background: var(--white);
 			flex-direction: column;
 			padding: 20px;
-			box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 			gap: 15px;
 		}
 		.nav-links.active {
