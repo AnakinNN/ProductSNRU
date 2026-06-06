@@ -1,43 +1,144 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 <section class="hero">
-	<div class="hero-content">
-		<h1>Welcome to SNRU</h1>
-		<p>Discover excellence in education and research in Northeast Thailand.</p>
-		<a href={`${base.replace(/\/$/, '')}/programs`} class="cta-button">Explore Programs</a>
+	<div class="hero-overlay"></div>
+	<div class="hero-content fade-in">
+		<span class="hero-badge">Department of Production Mechanical & Industrial Engineering</span>
+		<h1>
+			<span class="highlight">เครื่องกลการผลิต</span> & <span class="highlight-alt">อุตสาหการ</span>
+		</h1>
+		<p class="hero-subtitle">
+			มุ่งเน้นความเป็นเลิศทางด้านวิศวกรรมการผลิต เทคโนโลยีเครื่องจักรกล และการบริหารจัดการอุตสาหกรรมยุคใหม่ ณ มหาวิทยาลัยราชภัฏสกลนคร
+		</p>
+		<div class="hero-ctas">
+			<a href={`${base}/programs`} class="btn btn-primary">ดูหลักสูตร / Explore Programs</a>
+			<a href={`${base}/contact`} class="btn btn-outline">ติดต่อเรา / Contact Us</a>
+		</div>
 	</div>
 </section>
 
 <style>
 	.hero {
-		height: 400px;
-		background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+		position: relative;
+		min-height: 550px;
+		height: 70vh;
+		background: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') no-repeat center center;
 		background-size: cover;
-		background-position: center;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: var(--white);
 		text-align: center;
+		padding: 40px 20px;
+		overflow: hidden;
+	}
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0, 77, 46, 0.85) 0%, rgba(26, 32, 44, 0.9) 100%);
+		z-index: 1;
+	}
+	.hero-content {
+		position: relative;
+		z-index: 2;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+	.hero-badge {
+		display: inline-block;
+		background: rgba(212, 175, 55, 0.15);
+		border: 1px solid var(--accent);
+		color: var(--accent);
+		padding: 6px 16px;
+		border-radius: 30px;
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-bottom: 20px;
+		font-weight: 700;
 	}
 	.hero-content h1 {
-		font-size: 3rem;
-		margin-bottom: 1rem;
+		font-size: 3.5rem;
+		line-height: 1.2;
+		margin: 0 0 20px 0;
+		font-weight: 700;
 	}
-	.hero-content p {
-		font-size: 1.2rem;
-		margin-bottom: 2rem;
+	.highlight {
+		color: var(--white);
 	}
-	.cta-button {
+	.highlight-alt {
+		color: var(--accent);
+		text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+	}
+	.hero-subtitle {
+		font-size: 1.25rem;
+		line-height: 1.6;
+		margin-bottom: 35px;
+		color: #E2E8F0;
+		font-weight: 300;
+		max-width: 750px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.hero-ctas {
+		display: flex;
+		gap: 20px;
+		justify-content: center;
+		align-items: center;
+	}
+	.btn {
+		padding: 14px 28px;
+		border-radius: 8px;
+		font-weight: 700;
+		font-size: 0.95rem;
+		transition: var(--transition);
+		cursor: pointer;
+		display: inline-block;
+	}
+	.btn-primary {
 		background: var(--primary);
 		color: var(--white);
-		padding: 12px 24px;
-		border-radius: 4px;
-		font-weight: bold;
-		transition: background 0.3s;
+		border: 2px solid var(--primary);
+		box-shadow: 0 4px 14px rgba(0, 107, 63, 0.4);
 	}
-	.cta-button:hover {
-		background: #004494;
+	.btn-primary:hover {
+		background: var(--primary-dark);
+		border-color: var(--primary-dark);
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(0, 107, 63, 0.6);
+	}
+	.btn-outline {
+		background: transparent;
+		color: var(--white);
+		border: 2px solid var(--white);
+	}
+	.btn-outline:hover {
+		background: var(--white);
+		color: var(--primary-dark);
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 768px) {
+		.hero {
+			min-height: 480px;
+		}
+		.hero-content h1 {
+			font-size: 2.2rem;
+		}
+		.hero-subtitle {
+			font-size: 1rem;
+		}
+		.hero-ctas {
+			flex-direction: column;
+			gap: 12px;
+		}
+		.btn {
+			width: 100%;
+			text-align: center;
+		}
 	}
 </style>

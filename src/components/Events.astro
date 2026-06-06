@@ -1,40 +1,48 @@
 ---
 const events = [
 	{
-		day: "15",
-		month: "JUN",
-		title: "International Research Symposium 2026",
-		time: "09:00 AM - 04:30 PM",
-		location: "Main Convention Hall"
+		day: "18",
+		month: "ก.ค.",
+		monthEn: "JUL",
+		title: "การประชุมวิชาการเทคโนโลยีการผลิตและอุตสาหการระดับชาติ 2569",
+		titleEn: "National Manufacturing Tech & Industrial Engineering Conference 2026",
+		time: "09:00 - 16:30 น.",
+		location: "หอประชุมใหญ่ มหาวิทยาลัยราชภัฏสกลนคร"
 	},
 	{
-		day: "22",
-		month: "JUN",
-		title: "Freshmen Welcome Ceremony",
-		time: "08:30 AM - 12:00 PM",
-		location: "Student Union Plaza"
+		day: "25",
+		month: "ก.ค.",
+		monthEn: "JUL",
+		title: "ปฐมนิเทศนักศึกษาใหม่ ประจำปีการศึกษา 2569",
+		titleEn: "Department Freshmen Welcome & Orientation 2026",
+		time: "08:30 - 12:00 น.",
+		location: "ห้องสัมมนา อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม"
 	},
 	{
-		day: "05",
-		month: "JUL",
-		title: "Career Fair: Tech & Innovation",
-		time: "10:00 AM - 03:00 PM",
-		location: "Faculty of Science & Tech"
+		day: "07",
+		month: "ส.ค.",
+		monthEn: "AUG",
+		title: "การนำเสนอโครงงานนวัตกรรมและเทคโนโลยีเครื่องกลการผลิตประจำปี",
+		titleEn: "Annual Mechanical & Industrial Innovation Project Showcase",
+		time: "09:00 - 16:00 น.",
+		location: "ห้องโถงนิทรรศการ อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม"
 	}
 ];
 ---
 <section class="events-section">
 	<div class="container">
-		<h2>Upcoming Events</h2>
+		<h2 class="section-title">ปฏิทินกิจกรรม / Upcoming Events</h2>
 		<div class="events-list">
 			{events.map(event => (
 				<div class="event-item">
 					<div class="date-box">
 						<span class="day">{event.day}</span>
 						<span class="month">{event.month}</span>
+						<span class="month-en">{event.monthEn}</span>
 					</div>
 					<div class="event-details">
 						<h3>{event.title}</h3>
+						<p class="title-en">{event.titleEn}</p>
 						<div class="meta">
 							<span>🕒 {event.time}</span>
 							<span>📍 {event.location}</span>
@@ -48,76 +56,108 @@ const events = [
 
 <style>
 	.events-section {
-		padding: 60px 0;
-		background: #fff;
+		padding: 80px 0;
+		background: var(--white);
 	}
 	.container {
 		max-width: 1200px;
 		margin: 0 auto;
 		padding: 0 20px;
 	}
-	h2 {
-		color: var(--primary);
-		margin-bottom: 30px;
-	}
 	.events-list {
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
+		max-width: 900px;
+		margin: 0 auto;
 	}
 	.event-item {
 		display: flex;
 		align-items: center;
-		padding: 20px;
+		padding: 25px;
 		background: var(--background);
-		border-radius: 8px;
-		transition: transform 0.2s;
-		gap: 20px;
+		border-radius: var(--border-radius);
+		transition: var(--transition);
+		gap: 25px;
+		border-left: 5px solid var(--primary);
+		box-shadow: var(--shadow-sm);
 	}
 	.event-item:hover {
 		transform: translateX(10px);
-		box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+		box-shadow: var(--shadow-md);
+		border-left-color: var(--accent);
 	}
 	.date-box {
 		background: var(--primary);
 		color: var(--white);
-		min-width: 80px;
-		height: 80px;
+		min-width: 90px;
+		height: 90px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		border-radius: 4px;
+		border-radius: 8px;
+		box-shadow: 0 4px 10px rgba(0, 107, 63, 0.25);
+		transition: var(--transition);
+	}
+	.event-item:hover .date-box {
+		background: var(--accent);
+		color: #1A202C;
+		box-shadow: 0 4px 10px rgba(212, 175, 55, 0.25);
 	}
 	.day {
-		font-size: 1.5rem;
-		font-weight: bold;
+		font-size: 1.8rem;
+		font-weight: 700;
 		line-height: 1;
 	}
 	.month {
-		font-size: 0.9rem;
-		font-weight: bold;
+		font-size: 0.85rem;
+		font-weight: 500;
+		margin-top: 2px;
+	}
+	.month-en {
+		font-size: 0.7rem;
+		opacity: 0.8;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+	.event-details {
+		flex: 1;
 	}
 	.event-details h3 {
-		margin: 0 0 5px 0;
-		font-size: 1.2rem;
+		margin: 0 0 6px 0;
+		font-size: 1.15rem;
+		color: var(--text);
+		font-weight: 700;
+		line-height: 1.4;
+	}
+	.title-en {
+		margin: 0 0 10px 0;
+		font-size: 0.85rem;
+		color: var(--secondary);
 	}
 	.meta {
 		display: flex;
 		gap: 20px;
-		color: var(--secondary);
-		font-size: 0.9rem;
+		color: var(--text-light);
+		font-size: 0.85rem;
+		flex-wrap: wrap;
 	}
 	@media (max-width: 600px) {
 		.event-item {
 			flex-direction: column;
 			align-items: flex-start;
+			gap: 15px;
 		}
 		.date-box {
 			width: 100%;
 			flex-direction: row;
 			gap: 10px;
 			height: 50px;
+			min-width: auto;
+		}
+		.month-en {
+			display: none;
 		}
 		.meta {
 			flex-direction: column;

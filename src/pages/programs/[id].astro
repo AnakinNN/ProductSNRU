@@ -1,55 +1,287 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 
 export function getStaticPaths() {
   return [
-    {params: {id: 'bsc-tech'}, props: {name: 'Bachelor of Science', faculty: 'Science & Technology'}},
-    {params: {id: 'bed-edu'}, props: {name: 'Bachelor of Education', faculty: 'Education'}},
-    {params: {id: 'ba-arts'}, props: {name: 'Bachelor of Arts', faculty: 'Humanities'}},
-    {params: {id: 'bb-mgmt'}, props: {name: 'Bachelor of Business', faculty: 'Management Science'}},
+    {
+      params: { id: 'production-mechanical' },
+      props: {
+        name: 'เทคโนโลยีเครื่องกลการผลิต',
+        nameEn: 'Production Mechanical Technology',
+        faculty: 'คณะเทคโนโลยีอุตสาหกรรม',
+        degree: 'เทคโนโลยีบัณฑิต (ทล.บ.) • Bachelor of Industrial Technology (B.Ind.Tech.)',
+        credits: '128 หน่วยกิต',
+        overview: 'หลักสูตรนี้จัดทำขึ้นเพื่อเตรียมความพร้อมให้นักศึกษาเป็นนักเทคโนโลยีและวิศวกรผู้เชี่ยวชาญด้านงานกลเครื่องยนต์ โรงงานผลิต การใช้เครื่องควบคุมความเร็วอัตโนมัติ (CNC) การออกแบบทางกลศาสตร์ และวิศวกรรมการผลิตยุคใหม่ เรียนรู้ผ่านการบูรณาการภาคทฤษฎีควบคู่กับการปฏิบัติจริงร่วมกับภาคการผลิตอุตสาหกรรม',
+        curriculum: [
+          { year: 'ปีที่ 1 (Year 1)', desc: 'คณิตศาสตร์วิศวกรรมการผลิต, ฟิสิกส์อุตสาหกรรม, งานฝึกฝีมือช่างยนต์และช่างกล, เขียนแบบวิศวกรรมด้วยคอมพิวเตอร์ (2D CAD)' },
+          { year: 'ปีที่ 2 (Year 2)', desc: 'กลศาสตร์ของแข็ง, วัสดุศาสตร์และวิศวกรรมโลหะวิทยา, กรรมวิธีการผลิตสมัยใหม่, ปฏิบัติการเครื่องจักรกล CNC, เทคโนโลยีการเชื่อมขั้นสูง' },
+          { year: 'ปีที่ 3 (Year 3)', desc: 'การออกแบบชิ้นส่วนเครื่องจักรกล, ระบบควบคุมอัตโนมัติและหุ่นยนต์อุตสาหกรรม, ระบบไฮดรอลิกส์และนิวเมติกส์อัจฉริยะ, โปรแกรมคอมพิวเตอร์ช่วยในการผลิต (CAD/CAM/CAE)' },
+          { year: 'ปีที่ 4 (Year 4)', desc: 'โครงงานวิชาการเทคโนโลยีเครื่องกลการผลิต, การสัมมนาเทคโนโลยี, การฝึกสหกิจศึกษา (Co-operative Education) ณ โรงงานอุตสาหกรรมชั้นนำเป็นเวลา 1 ภาคการศึกษา' }
+        ],
+        requirements: 'สำเร็จการศึกษาระดับ ม.6 (แผนวิทย์-คณิต หรือศิลป์-คำนวณ) หรือระดับ ปวช./ปวส. สาขาช่างยนต์ ช่างกลโรงงาน ช่างเชื่อม ช่างไฟฟ้า หรือสาขาทางด้านเทคโนโลยีอุตสาหกรรมที่เกี่ยวข้อง'
+      }
+    },
+    {
+      params: { id: 'industrial-tech' },
+      props: {
+        name: 'เทคโนโลยีอุตสาหการ',
+        nameEn: 'Industrial Technology',
+        faculty: 'คณะเทคโนโลยีอุตสาหกรรม',
+        degree: 'เทคโนโลยีบัณฑิต (ทล.บ.) • Bachelor of Industrial Technology (B.Ind.Tech.)',
+        credits: '125 หน่วยกิต',
+        overview: 'หลักสูตรที่มุ่งพัฒนาทักษะด้านกระบวนการทำงาน การจัดการอุตสาหกรรมเพื่อลดความสูญเปล่า ความปลอดภัยในการทำงาน การควบคุมและประกันคุณภาพสินค้า ตลอดจนการประยุกต์ใช้เทคโนโลยีโลจิสติกส์และระบบซัพพลายเชนในโรงงานอุตสาหกรรมยุคใหม่',
+        curriculum: [
+          { year: 'ปีที่ 1 (Year 1)', desc: 'คณิตศาสตร์และสถิติเบื้องต้นสำหรับอุตสาหกรรม, เคมีอุตสาหกรรม, การเขียนแบบอุตสาหกรรมเบื้องต้น, ความปลอดภัยและอาชีวอนามัยในการทำงาน' },
+          { year: 'ปีที่ 2 (Year 2)', desc: 'การศึกษางานและการปรับปรุงวิธีการทำงาน, การวิเคราะห์ต้นทุนการผลิต, สถิติควบคุมคุณภาพการผลิต (QA/QC), เทคโนโลยีการขนส่งและโลจิสติกส์' },
+          { year: 'ปีที่ 3 (Year 3)', desc: 'การวางแผนและควบคุมการผลิตด้วยคอมพิวเตอร์, การออกแบบและวางผังโรงงาน (Plant Layout), วิศวกรรมบำรุงรักษาและการลดความเสียหาย, เทคนิคการผลิตแบบลีน (Lean Manufacturing)' },
+          { year: 'ปีที่ 4 (Year 4)', desc: 'โครงงานวิชาการเทคโนโลยีอุตสาหการ, การสัมมนาอุตสาหการ, การฝึกสหกิจศึกษาในสถานประกอบการ หรือการฝึกงานเชิงลึกเพื่อสร้างประสบการณ์ทำงานจริง' }
+        ],
+        requirements: 'สำเร็จการศึกษาระดับ ม.6 (ทุกแผนการเรียน) หรือระดับ ปวช./ปวส. สาขาวิชาช่างทุกสาขา หรือสาขาวิชาโลจิสติกส์ พาณิชยการ ที่เกี่ยวข้อง'
+      }
+    }
   ];
 }
 
 const { id } = Astro.params;
-const { name, faculty } = Astro.props;
+const { name, nameEn, faculty, degree, credits, overview, curriculum, requirements } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
-<Layout title={`${name} - SNRU Clone`}>
+<Layout title={`${name} - หลักสูตรที่เปิดสอน`}>
 	<Header />
 	<main class="page-container">
 		<div class="container">
-			<a href={import.meta.env.BASE_URL + '/programs'} class="back-link">&larr; Back to Programs</a>
-			<h1>{name}</h1>
-			<p class="faculty-tag">{faculty}</p>
+			<a href={`${base}/programs`} class="back-link">&larr; กลับไปหน้ารวมหลักสูตร (Back to Programs)</a>
 			
-			<div class="content-section">
-				<h2>Program Overview</h2>
-				<p>This program is designed to provide students with the skills and knowledge required to excel in the field of {faculty}.</p>
+			<div class="program-header-card fade-in">
+				<span class="faculty-tag">{faculty}</span>
+				<h1>{name}</h1>
+				<p class="name-en">{nameEn}</p>
+				<p class="degree-desc"><strong>วุฒิการศึกษา:</strong> {degree}</p>
+				<p class="credits-desc"><strong>จำนวนหน่วยกิตตลอดหลักสูตร:</strong> {credits}</p>
+			</div>
+			
+			<div class="content-grid">
+				<div class="main-content">
+					<section class="section">
+						<h2>ภาพรวมหลักสูตร (Program Overview)</h2>
+						<p class="overview-text">{overview}</p>
+					</section>
+					
+					<section class="section">
+						<h2>แผนการศึกษารายชั้นปี (Curriculum Plan)</h2>
+						<div class="curriculum-timeline">
+							{curriculum.map((item, index) => (
+								<div class="timeline-item">
+									<div class="timeline-badge">{index + 1}</div>
+									<div class="timeline-content">
+										<h3>{item.year}</h3>
+										<p>{item.desc}</p>
+									</div>
+								</div>
+							))}
+						</div>
+					</section>
+				</div>
 				
-				<h2>Curriculum</h2>
-				<ul>
-					<li>Year 1: Foundation Courses</li>
-					<li>Year 2: Core Major Requirements</li>
-					<li>Year 3: Advanced Specialization</li>
-					<li>Year 4: Internship & Capstone Project</li>
-				</ul>
+				<div class="side-content">
+					<div class="side-card requirements-card">
+						<h3>คุณสมบัติผู้สมัคร</h3>
+						<p>{requirements}</p>
+					</div>
+
+					<div class="side-card contact-card">
+						<h3>สอบถามข้อมูลหลักสูตร</h3>
+						<p>สนใจเข้าศึกษาหรือขอรายละเอียดโครงสร้างการเรียนเพิ่มเติม ติดต่อเจ้าหน้าที่ประจำหลักสูตร</p>
+						<a href={`${base}/contact`} class="btn-contact">ช่องทางการติดต่อ &rarr;</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
-	<footer class="footer">
-		<div class="container">
-			<p>&copy; 2026 Sakon Nakhon Rajabhat University Prototype.</p>
-		</div>
-	</footer>
+	<Footer />
 </Layout>
 
 <style>
-	.page-container { padding: 60px 0; min-height: 70vh; }
-	.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-	.back-link { color: var(--primary); display: block; margin-bottom: 20px; }
-	h1 { color: var(--primary); margin: 0; }
-	.faculty-tag { color: var(--secondary); font-weight: bold; margin-bottom: 40px; }
-	.content-section h2 { color: var(--primary); margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-	.footer { background: #333; color: #fff; padding: 40px 0; text-align: center; }
+	.page-container {
+		padding: 60px 0;
+		min-height: 80vh;
+		background: var(--background);
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+	.back-link {
+		color: var(--primary);
+		display: inline-block;
+		margin-bottom: 30px;
+		font-weight: 700;
+	}
+	.back-link:hover {
+		color: var(--accent-pink);
+		transform: translateX(-5px);
+	}
+
+	/* Header Card */
+	.program-header-card {
+		background: var(--white);
+		border-left: 6px solid var(--primary);
+		border-radius: var(--border-radius);
+		padding: 40px;
+		box-shadow: var(--shadow-sm);
+		margin-bottom: 40px;
+	}
+	.program-header-card h1 {
+		color: var(--primary-dark);
+		font-size: 2.2rem;
+		margin: 10px 0 5px 0;
+		font-weight: 700;
+	}
+	.name-en {
+		font-size: 1.2rem;
+		color: var(--secondary);
+		margin: 0 0 20px 0;
+		font-style: italic;
+	}
+	.degree-desc, .credits-desc {
+		margin: 5px 0;
+		font-size: 0.95rem;
+		color: var(--text);
+	}
+
+	/* Layout Grid */
+	.content-grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 40px;
+	}
+	.section {
+		background: var(--white);
+		border-radius: var(--border-radius);
+		padding: 35px;
+		box-shadow: var(--shadow-sm);
+		margin-bottom: 30px;
+	}
+	.section h2 {
+		color: var(--primary);
+		font-size: 1.4rem;
+		font-weight: 700;
+		margin-top: 0;
+		margin-bottom: 20px;
+		border-bottom: 2px solid var(--primary-light);
+		padding-bottom: 10px;
+	}
+	.overview-text {
+		line-height: 1.8;
+		color: var(--text);
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	/* Timeline */
+	.curriculum-timeline {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+		position: relative;
+		padding-left: 20px;
+	}
+	.curriculum-timeline::before {
+		content: '';
+		position: absolute;
+		left: 5px;
+		top: 10px;
+		width: 2px;
+		height: calc(100% - 20px);
+		background: var(--primary-light);
+	}
+	.timeline-item {
+		display: flex;
+		gap: 20px;
+		position: relative;
+	}
+	.timeline-badge {
+		position: absolute;
+		left: -25px;
+		top: 2px;
+		width: 22px;
+		height: 22px;
+		background: var(--primary);
+		color: var(--white);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.75rem;
+		font-weight: bold;
+		box-shadow: 0 0 0 4px var(--white);
+	}
+	.timeline-content h3 {
+		margin: 0 0 5px 0;
+		font-size: 1.05rem;
+		color: var(--primary-dark);
+		font-weight: 700;
+	}
+	.timeline-content p {
+		margin: 0;
+		color: var(--secondary);
+		line-height: 1.5;
+		font-size: 0.9rem;
+	}
+
+	/* Side Content */
+	.side-card {
+		background: var(--white);
+		border-radius: var(--border-radius);
+		padding: 30px;
+		box-shadow: var(--shadow-sm);
+		margin-bottom: 30px;
+		border: 1px solid #E2E8F0;
+	}
+	.side-card h3 {
+		color: var(--primary);
+		font-size: 1.25rem;
+		margin-top: 0;
+		margin-bottom: 15px;
+		font-weight: 700;
+	}
+	.requirements-card {
+		border-top: 4px solid var(--accent);
+	}
+	.requirements-card p {
+		line-height: 1.6;
+		font-size: 0.9rem;
+		color: var(--text);
+		margin: 0;
+	}
+	.contact-card p {
+		line-height: 1.6;
+		font-size: 0.9rem;
+		color: var(--secondary);
+		margin-bottom: 20px;
+	}
+	.btn-contact {
+		display: inline-block;
+		background: var(--primary);
+		color: var(--white);
+		padding: 10px 20px;
+		border-radius: 6px;
+		font-weight: 700;
+		font-size: 0.9rem;
+		transition: var(--transition);
+	}
+	.btn-contact:hover {
+		background: var(--primary-dark);
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 992px) {
+		.content-grid {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>

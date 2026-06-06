@@ -1,0 +1,429 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const faqs = [
+	{
+		q: "หลักสูตรนี้ใช้ระยะเวลาศึกษาเท่าไหร่?",
+		a: "หลักสูตรเทคโนโลยีบัณฑิต (ทล.บ.) ใช้เวลาเรียนปกติ 4 ปี (8 ภาคการศึกษา) โดยมีแผนสหกิจศึกษาให้เรียนรู้ในสถานประกอบการจริงในชั้นปีสุดท้าย"
+	},
+	{
+		q: "ผู้สำเร็จการศึกษา ปวช. หรือ ปวส. สามารถเทียบโอนได้ไหม?",
+		a: "สามารถสมัครเรียนได้ โดยใช้เกณฑ์เทียบโอนวิชาเรียนตามประกาศของมหาวิทยาลัยฯ สำหรับผู้จบ ปวส. สามารถเรียนต่อและเทียบโอนจบภายในประมาณ 2 - 2.5 ปี"
+	},
+	{
+		q: "จบการศึกษาแล้วประกอบอาชีพอะไรได้บ้าง?",
+		a: "สามารถทำงานเป็นผู้ช่วยวิศวกรโรงงาน, ผู้ควบคุมเครื่อง CNC, เจ้าหน้าที่ควบคุมคุณภาพ (QA/QC), เจ้าหน้าที่ความปลอดภัย (จป.วิชาชีพ) หรือทำงานด้านการออกแบบวิศวกรรมชิ้นส่วนและการจัดการกระบวนการผลิต"
+	}
+];
+---
+
+<Layout title="ติดต่อเรา - สาขาวิชาเครื่องกลการผลิตและอุตสาหการ">
+	<Header />
+	<main class="page-container">
+		<!-- Hero Section -->
+		<section class="contact-hero">
+			<div class="hero-overlay"></div>
+			<div class="container hero-content">
+				<h1>ติดต่อเรา / Contact Us</h1>
+				<p>มีคำถามหรือข้อสงสัยเกี่ยวกับหลักสูตรการเรียนการสอน? สามารถติดต่อสอบถามเราได้ตลอดเวลา</p>
+			</div>
+		</section>
+
+		<!-- Content Grid -->
+		<section class="contact-section">
+			<div class="container">
+				<div class="contact-grid">
+					<!-- Info Column -->
+					<div class="contact-info-panel">
+						<h2>ข้อมูลการติดต่อ</h2>
+						<p class="panel-subtitle">คุณสามารถติดต่อเราผ่านทางช่องทางต่าง ๆ หรือแวะมาเยี่ยมชมที่ภาควิชาได้</p>
+						
+						<ul class="info-list">
+							<li>
+								<div class="icon-circle">📍</div>
+								<div class="info-text">
+									<strong>ที่ตั้งสำนักงานสาขา:</strong><br />
+									อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยราชภัฏสกลนคร<br />
+									680 ถ.นิตโย ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000
+								</div>
+							</li>
+							<li>
+								<div class="icon-circle">📞</div>
+								<div class="info-text">
+									<strong>เบอร์โทรศัพท์ติดต่อ:</strong><br />
+									042-970-023 (ฝ่ายวิชาการคณะเทคโนโลยีอุตสาหกรรม)
+								</div>
+							</li>
+							<li>
+								<div class="icon-circle">✉️</div>
+								<div class="info-text">
+									<strong>อีเมลกลาง:</strong><br />
+									industrial.tech@snru.ac.th
+								</div>
+							</li>
+							<li>
+								<div class="icon-circle">🕒</div>
+								<div class="info-text">
+									<strong>เวลาทำการสำนักงาน:</strong><br />
+									วันจันทร์ - วันศุกร์: 08:30 น. - 16:30 น. (เว้นวันหยุดราชการ)
+								</div>
+							</li>
+						</ul>
+
+						<!-- Stylized Static Vector Map Area -->
+						<div class="map-placeholder">
+							<div class="map-overlay">
+								<span class="map-pin">📍</span>
+								<strong>คณะเทคโนโลยีอุตสาหกรรม มรภ.สกลนคร</strong>
+								<p>คลิกเพื่อนำทางด้วย Google Maps</p>
+								<a href="https://maps.google.com/?q=Sakon+Nakhon+Rajabhat+University" target="_blank" rel="noopener noreferrer" class="btn-map">เปิดแผนที่</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Column -->
+					<div class="contact-form-panel">
+						<h2>ส่งข้อความถึงเรา</h2>
+						<p class="panel-subtitle">ส่งข้อความสอบถามการรับสมัคร รายละเอียดวิชา หรือข้อเสนอแนะ เจ้าหน้าที่จะรีบตอบกลับผ่านอีเมลของคุณ</p>
+						
+						<form class="styled-form" onsubmit="event.preventDefault(); alert('ส่งข้อความเรียบร้อยแล้ว! ขอบคุณที่ติดต่อเรา'); this.reset();">
+							<div class="form-group">
+								<label for="name">ชื่อ - นามสกุล (Full Name) *</label>
+								<input type="text" id="name" required placeholder="เช่น นายสมคิด เรียนดี" />
+							</div>
+							
+							<div class="form-group">
+								<label for="email">อีเมลติดต่อกลับ (Email Address) *</label>
+								<input type="email" id="email" required placeholder="example@email.com" />
+							</div>
+
+							<div class="form-group">
+								<label for="subject">หัวข้อข้อความ (Subject)</label>
+								<select id="subject">
+									<option value="admission">สอบถามข้อมูลการรับสมัครนักศึกษาใหม่</option>
+									<option value="curriculum">สอบถามข้อมูลรายวิชา/หลักสูตร</option>
+									<option value="collaboration">การร่วมมือกับหน่วยงานภายนอก/ฝึกงาน</option>
+									<option value="other">เรื่องอื่น ๆ</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="message">รายละเอียดข้อความ (Message) *</label>
+								<textarea id="message" rows="5" required placeholder="ระบุข้อคำถามหรือรายละเอียดที่คุณต้องการติดต่อ..."></textarea>
+							</div>
+
+							<button type="submit" class="btn-submit">ส่งข้อความ / Send Message</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ Section -->
+		<section class="faq-section">
+			<div class="container">
+				<h2 class="section-title">คำถามที่พบบ่อย (FAQs)</h2>
+				<div class="faq-accordion">
+					{faqs.map(faq => (
+						<details class="faq-item">
+							<summary class="faq-question">
+								{faq.q}
+								<span class="summary-icon">▼</span>
+							</summary>
+							<div class="faq-answer">
+								<p>{faq.a}</p>
+							</div>
+						</details>
+					))}
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.page-container {
+		min-height: 80vh;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	/* Hero */
+	.contact-hero {
+		position: relative;
+		background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') no-repeat center center;
+		background-size: cover;
+		padding: 100px 0;
+		color: var(--white);
+		text-align: center;
+	}
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0, 107, 63, 0.8) 0%, rgba(26, 32, 44, 0.9) 100%);
+	}
+	.hero-content {
+		position: relative;
+		z-index: 2;
+	}
+	.hero-content h1 {
+		font-size: 2.8rem;
+		margin: 0 0 10px 0;
+		font-weight: 700;
+	}
+	.hero-content p {
+		font-size: 1.2rem;
+		color: #E2E8F0;
+		margin: 0;
+		font-weight: 300;
+	}
+
+	/* Contact Layout */
+	.contact-section {
+		padding: 80px 0;
+		background: var(--background);
+	}
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr;
+		gap: 50px;
+	}
+	.contact-info-panel, .contact-form-panel {
+		background: var(--white);
+		padding: 40px;
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow-sm);
+		border: 1px solid #E2E8F0;
+	}
+	.contact-info-panel h2, .contact-form-panel h2 {
+		color: var(--primary);
+		margin-top: 0;
+		margin-bottom: 8px;
+		font-weight: 700;
+		font-size: 1.6rem;
+	}
+	.panel-subtitle {
+		color: var(--secondary);
+		font-size: 0.9rem;
+		line-height: 1.5;
+		margin-bottom: 30px;
+	}
+	.info-list {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+		margin-bottom: 30px;
+	}
+	.info-list li {
+		display: flex;
+		gap: 15px;
+		align-items: flex-start;
+	}
+	.icon-circle {
+		width: 42px;
+		height: 42px;
+		background: var(--primary-light);
+		color: var(--primary);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.2rem;
+		flex-shrink: 0;
+	}
+	.info-text {
+		font-size: 0.9rem;
+		color: var(--text);
+		line-height: 1.6;
+	}
+	.info-text strong {
+		color: var(--primary-dark);
+	}
+
+	/* Map Area */
+	.map-placeholder {
+		height: 220px;
+		background: #E2E8F0 url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80') no-repeat center center;
+		background-size: cover;
+		border-radius: 8px;
+		position: relative;
+		overflow: hidden;
+	}
+	.map-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 77, 46, 0.85);
+		color: var(--white);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+		text-align: center;
+	}
+	.map-pin {
+		font-size: 2rem;
+		margin-bottom: 5px;
+	}
+	.map-overlay strong {
+		font-size: 0.95rem;
+		margin-bottom: 2px;
+	}
+	.map-overlay p {
+		font-size: 0.8rem;
+		opacity: 0.8;
+		margin: 0 0 12px 0;
+	}
+	.btn-map {
+		background: var(--accent);
+		color: #1A202C;
+		font-weight: 700;
+		font-size: 0.8rem;
+		padding: 6px 16px;
+		border-radius: 4px;
+		transition: var(--transition);
+	}
+	.btn-map:hover {
+		transform: translateY(-2px);
+		background: var(--white);
+	}
+
+	/* Form */
+	.styled-form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+	.form-group label {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--text);
+	}
+	.form-group input, .form-group select, .form-group textarea {
+		padding: 10px 14px;
+		border-radius: 6px;
+		border: 1px solid #CBD5E0;
+		font-family: inherit;
+		font-size: 0.9rem;
+		background: #F8FAFC;
+		transition: var(--transition);
+	}
+	.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+		outline: none;
+		border-color: var(--primary);
+		box-shadow: 0 0 0 3px var(--primary-light);
+		background: var(--white);
+	}
+	.btn-submit {
+		background: var(--primary);
+		color: var(--white);
+		border: none;
+		padding: 12px 24px;
+		border-radius: 6px;
+		font-weight: 700;
+		font-size: 0.95rem;
+		cursor: pointer;
+		transition: var(--transition);
+		box-shadow: 0 4px 10px rgba(0, 107, 63, 0.2);
+	}
+	.btn-submit:hover {
+		background: var(--primary-dark);
+		transform: translateY(-2px);
+	}
+
+	/* FAQ Accordion */
+	.faq-section {
+		padding: 80px 0;
+		background: var(--white);
+		border-top: 1px solid #EDF2F7;
+	}
+	.faq-accordion {
+		max-width: 800px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+	.faq-item {
+		border: 1px solid #E2E8F0;
+		border-radius: 8px;
+		overflow: hidden;
+		background: var(--background);
+		transition: var(--transition);
+	}
+	.faq-item[open] {
+		border-color: var(--primary-light);
+		box-shadow: var(--shadow-sm);
+	}
+	.faq-question {
+		padding: 18px 24px;
+		font-weight: 700;
+		font-size: 1rem;
+		color: var(--text);
+		cursor: pointer;
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.faq-question::-webkit-details-marker {
+		display: none;
+	}
+	.summary-icon {
+		font-size: 0.75rem;
+		color: var(--secondary);
+		transition: var(--transition);
+	}
+	.faq-item[open] .summary-icon {
+		transform: rotate(180deg);
+		color: var(--primary);
+	}
+	.faq-answer {
+		padding: 0 24px 20px 24px;
+		border-top: 1px solid #EDF2F7;
+		background: var(--white);
+	}
+	.faq-answer p {
+		margin: 15px 0 0 0;
+		color: var(--secondary);
+		line-height: 1.6;
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 992px) {
+		.contact-grid {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+	}
+	@media (max-width: 768px) {
+		.contact-hero {
+			padding: 60px 0;
+		}
+		.hero-content h1 {
+			font-size: 2rem;
+		}
+		.contact-info-panel, .contact-form-panel {
+			padding: 30px;
+		}
+	}
+</style>

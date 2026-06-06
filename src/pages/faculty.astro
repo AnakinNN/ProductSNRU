@@ -1,0 +1,363 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const headOfDept = {
+	name: "ผศ.ดร. สมชาย มงคลดี",
+	nameEn: "Assist. Prof. Dr. Somchai Mongkoldee",
+	title: "หัวหน้าสาขาวิชาเครื่องกลการผลิตและอุตสาหการ",
+	degree: "ป.เอก: Ph.D. in Mechanical Engineering (Suranaree University of Technology)",
+	specialty: "เครื่องจักรกล CNC, หุ่นยนต์อุตสาหกรรม, ระบบควบคุมอัตโนมัติ (CNC Machines, Industrial Robotics)",
+	email: "somchai.mo@snru.ac.th",
+	office: "ห้องปฏิบัติการ CNC ชั้น 1 อาคารเทคโนโลยีอุตสาหกรรม",
+	avatar: "SM"
+};
+
+const lecturers = [
+	{
+		name: "อาจารย์ ดร. วิชัย สิทธิชัย",
+		nameEn: "Dr. Wichai Sitthichai",
+		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีอุตสาหการ",
+		degree: "ป.เอก: Ph.D. in Industrial Engineering (Kasetsart University)",
+		specialty: "การควบคุมคุณภาพ, ความปลอดภัยในโรงงาน, การบำรุงรักษาเชิงป้องกัน (QC/QA, HSE, Maintenance)",
+		email: "wichai.si@snru.ac.th",
+		office: "ห้องพักครู 302 ชั้น 3 อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "WS"
+	},
+	{
+		name: "ผศ. สุรพงษ์ แก้วมณี",
+		nameEn: "Assist. Prof. Surapong Kaewmanee",
+		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีเครื่องกลการผลิต",
+		degree: "ป.โท: M.Eng. in Mechanical Engineering (King Mongkut's University of Technology Thonburi)",
+		specialty: "โลหะวิทยา, การอบชุบความร้อน, การเขียนแบบวิศวกรรม CAD/CAM (Metallurgy, CAD/CAM)",
+		email: "surapong.ka@snru.ac.th",
+		office: "ห้องปฏิบัติการวัสดุศาสตร์ ชั้น 2 อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SK"
+	},
+	{
+		name: "อาจารย์ กนกวรรณ จันทร์สว่าง",
+		nameEn: "Ajarn Kanokwan Chanthaswang",
+		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีอุตสาหการ",
+		degree: "ป.โท: M.Eng. in Industrial Engineering (Khon Kaen University)",
+		specialty: "การวางแผนและควบคุมการผลิต, โลจิสติกส์และโซ่อุปทาน, ระบบลีน (Production Planning, Logistics, Lean)",
+		email: "kanokwan.ch@snru.ac.th",
+		office: "ห้องพักครู 304 ชั้น 3 อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "KC"
+	},
+	{
+		name: "อาจารย์ เกียรติศักดิ์ พรหมทัต",
+		nameEn: "Ajarn Kiattisak Promthat",
+		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีเครื่องกลการผลิต",
+		degree: "ป.โท: M.Eng. in Manufacturing Engineering (King Mongkut's Institute of Technology Ladkrabang)",
+		specialty: "เทคโนโลยีการเชื่อมอุตสาหกรรม, การตรวจสอบรอยเชื่อมแบบไม่ทำลาย, งานโลหะแผ่น (Welding Tech, NDT)",
+		email: "kiattisak.pr@snru.ac.th",
+		office: "โรงเรือนปฏิบัติงานเชื่อม ชั้น 1 อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "KP"
+	}
+];
+---
+
+<Layout title="คณาจารย์และบุคลากร - สาขาวิชาเครื่องกลการผลิตและอุตสาหการ">
+	<Header />
+	<main class="page-container">
+		<!-- Hero Section -->
+		<section class="faculty-hero">
+			<div class="hero-overlay"></div>
+			<div class="container hero-content">
+				<h1>คณาจารย์และบุคลากร / Faculty & Staff</h1>
+				<p>คณาจารย์ผู้มีความเชี่ยวชาญพร้อมถ่ายทอดองค์ความรู้ ประสบการณ์ และร่วมวิจัยเพื่อขับเคลื่อนนวัตกรรมสู่ท้องถิ่น</p>
+			</div>
+		</section>
+
+		<!-- Head of Department Highlight -->
+		<section class="head-highlight-section">
+			<div class="container">
+				<h2 class="section-title">หัวหน้าสาขาวิชา / Department Head</h2>
+				
+				<div class="head-card fade-in">
+					<div class="head-avatar-wrapper">
+						<div class="avatar-circle">{headOfDept.avatar}</div>
+					</div>
+					<div class="head-info">
+						<span class="title-badge">{headOfDept.title}</span>
+						<h3>{headOfDept.name}</h3>
+						<span class="en-name">{headOfDept.nameEn}</span>
+						<hr class="divider" />
+						<p class="credential">🎓 <strong>วุฒิการศึกษา:</strong> {headOfDept.degree}</p>
+						<p class="specialty">⚙️ <strong>ความเชี่ยวชาญ:</strong> {headOfDept.specialty}</p>
+						<p class="office">📍 <strong>ห้องพัก/สำนักงาน:</strong> {headOfDept.office}</p>
+						<p class="email">✉️ <strong>อีเมลติดต่อ:</strong> <a href={`mailto:${headOfDept.email}`}>{headOfDept.email}</a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Faculty Grid -->
+		<section class="faculty-grid-section">
+			<div class="container">
+				<h2 class="section-title">อาจารย์ประจำหลักสูตร / Faculty Members</h2>
+				
+				<div class="faculty-grid">
+					{lecturers.map(lect => (
+						<div class="faculty-card">
+							<div class="card-avatar-wrapper">
+								<div class="avatar-circle">{lect.avatar}</div>
+							</div>
+							<div class="card-info">
+								<span class="role-tag">{lect.title}</span>
+								<h3>{lect.name}</h3>
+								<span class="en-name">{lect.nameEn}</span>
+								<hr class="divider-sm" />
+								<p class="credential"><strong>การศึกษา:</strong> {lect.degree}</p>
+								<p class="specialty"><strong>ความเชี่ยวชาญ:</strong> {lect.specialty}</p>
+								<div class="contact-details">
+									<span>📍 {lect.office}</span>
+									<span>✉️ <a href={`mailto:${lect.email}`}>{lect.email}</a></span>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.page-container {
+		min-height: 80vh;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	/* Hero */
+	.faculty-hero {
+		position: relative;
+		background: url('https://images.unsplash.com/photo-1523050335392-9bef867a0578?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') no-repeat center center;
+		background-size: cover;
+		padding: 100px 0;
+		color: var(--white);
+		text-align: center;
+	}
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0, 107, 63, 0.8) 0%, rgba(26, 32, 44, 0.9) 100%);
+	}
+	.hero-content {
+		position: relative;
+		z-index: 2;
+	}
+	.hero-content h1 {
+		font-size: 2.8rem;
+		margin: 0 0 10px 0;
+		font-weight: 700;
+	}
+	.hero-content p {
+		font-size: 1.2rem;
+		color: #E2E8F0;
+		margin: 0;
+		font-weight: 300;
+	}
+
+	/* Head Highlight */
+	.head-highlight-section {
+		padding: 80px 0 40px 0;
+		background: var(--white);
+	}
+	.head-card {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		background: var(--background);
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow-md);
+		border-left: 6px solid var(--accent);
+		overflow: hidden;
+		max-width: 900px;
+		margin: 0 auto;
+		align-items: center;
+	}
+	.head-card:hover {
+		box-shadow: var(--shadow-lg);
+	}
+	.head-avatar-wrapper {
+		display: flex;
+		justify-content: center;
+		padding: 40px;
+	}
+	.avatar-circle {
+		width: 150px;
+		height: 150px;
+		background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+		color: var(--white);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 3rem;
+		font-weight: 700;
+		box-shadow: 0 4px 14px rgba(0, 107, 63, 0.3);
+		border: 4px solid var(--white);
+	}
+	.head-info {
+		padding: 40px 40px 40px 0;
+	}
+	.title-badge {
+		background: var(--primary-light);
+		color: var(--primary-dark);
+		font-weight: 700;
+		font-size: 0.8rem;
+		padding: 6px 14px;
+		border-radius: 20px;
+		display: inline-block;
+		margin-bottom: 12px;
+	}
+	.head-info h3 {
+		font-size: 1.8rem;
+		color: var(--text);
+		margin: 0 0 4px 0;
+		font-weight: 700;
+	}
+	.head-info .en-name {
+		font-size: 1rem;
+		color: var(--secondary);
+		display: block;
+		margin-bottom: 15px;
+	}
+	.divider {
+		border: none;
+		border-top: 1px solid #E2E8F0;
+		margin-bottom: 20px;
+	}
+	.head-info p {
+		margin: 10px 0;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: var(--text);
+	}
+	.head-info a {
+		color: var(--primary);
+		font-weight: 700;
+	}
+	.head-info a:hover {
+		color: var(--accent-pink);
+		text-decoration: underline;
+	}
+
+	/* Faculty Grid Section */
+	.faculty-grid-section {
+		padding: 60px 0 80px 0;
+		background: var(--background);
+	}
+	.faculty-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+		gap: 30px;
+	}
+	.faculty-card {
+		background: var(--white);
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow-sm);
+		border: 1px solid #E2E8F0;
+		display: grid;
+		grid-template-columns: 1fr 2.2fr;
+		align-items: center;
+		overflow: hidden;
+		transition: var(--transition);
+	}
+	.faculty-card:hover {
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-lg);
+		border-color: var(--primary-light);
+	}
+	.faculty-card .card-avatar-wrapper {
+		display: flex;
+		justify-content: center;
+		padding: 20px;
+	}
+	.faculty-card .avatar-circle {
+		width: 100px;
+		height: 100px;
+		font-size: 2rem;
+		box-shadow: 0 4px 10px rgba(0, 107, 63, 0.15);
+	}
+	.card-info {
+		padding: 25px 25px 25px 0;
+	}
+	.role-tag {
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--primary);
+		display: block;
+		margin-bottom: 6px;
+	}
+	.card-info h3 {
+		font-size: 1.25rem;
+		color: var(--text);
+		margin: 0 0 2px 0;
+		font-weight: 700;
+	}
+	.card-info .en-name {
+		font-size: 0.85rem;
+		color: var(--secondary);
+		display: block;
+		margin-bottom: 12px;
+	}
+	.divider-sm {
+		border: none;
+		border-top: 1px solid #EDF2F7;
+		margin-bottom: 12px;
+	}
+	.card-info p {
+		margin: 6px 0;
+		font-size: 0.85rem;
+		line-height: 1.5;
+		color: var(--text);
+	}
+	.contact-details {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		margin-top: 12px;
+		font-size: 0.8rem;
+		color: var(--text-light);
+	}
+	.contact-details a {
+		color: var(--primary);
+	}
+	.contact-details a:hover {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 992px) {
+		.faculty-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 768px) {
+		.head-card {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+		.head-info {
+			padding: 0 30px 40px 30px;
+		}
+		.faculty-card {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+		.card-info {
+			padding: 0 25px 25px 25px;
+		}
+	}
+</style>

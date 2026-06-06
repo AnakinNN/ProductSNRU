@@ -1,9 +1,9 @@
 ---
 const stats = [
-	{ label: "Students", value: "15,000+", icon: "🎓" },
-	{ label: "Faculty Members", value: "800+", icon: "👨‍🏫" },
-	{ label: "Programs", value: "65", icon: "📚" },
-	{ label: "Years of Excellence", icon: "🏆", value: "30+" }
+	{ label: "นักศึกษาในภาควิชา", labelEn: "Active Students", value: "400+", icon: "🎓" },
+	{ label: "คณาจารย์และบุคลากร", labelEn: "Faculty & Staff", value: "15+", icon: "👨‍🏫" },
+	{ label: "ห้องปฏิบัติการเฉพาะทาง", labelEn: "Specialized Labs", value: "8+", icon: "⚙️" },
+	{ label: "ปีแห่งการก่อตั้งพัฒนา", labelEn: "Years of Development", icon: "🏆", value: "25+" }
 ];
 ---
 <section class="stats-section">
@@ -11,9 +11,14 @@ const stats = [
 		<div class="stats-grid">
 			{stats.map(stat => (
 				<div class="stat-card">
-					<div class="icon">{stat.icon}</div>
+					<div class="icon-wrapper">
+						<span class="icon">{stat.icon}</span>
+					</div>
 					<div class="value">{stat.value}</div>
-					<div class="label">{stat.label}</div>
+					<div class="label-group">
+						<span class="label-th">{stat.label}</span>
+						<span class="label-en">{stat.labelEn}</span>
+					</div>
 				</div>
 			))}
 		</div>
@@ -22,9 +27,11 @@ const stats = [
 
 <style>
 	.stats-section {
-		background: var(--primary);
+		background: linear-gradient(135deg, var(--primary-dark) 0%, #1A202C 100%);
 		color: var(--white);
-		padding: 60px 0;
+		padding: 80px 0;
+		border-top: 4px solid var(--accent);
+		border-bottom: 4px solid var(--accent);
 	}
 	.container {
 		max-width: 1200px;
@@ -33,26 +40,75 @@ const stats = [
 	}
 	.stats-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 30px;
 		text-align: center;
 	}
-	.icon {
-		font-size: 2.5rem;
-		margin-bottom: 10px;
+	.stat-card {
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		padding: 30px 20px;
+		border-radius: var(--border-radius);
+		transition: var(--transition);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.stat-card:hover {
+		transform: translateY(-8px);
+		background: rgba(255, 255, 255, 0.08);
+		border-color: var(--accent);
+		box-shadow: var(--shadow-lg);
+	}
+	.icon-wrapper {
+		width: 70px;
+		height: 70px;
+		background: rgba(214, 175, 55, 0.15);
+		border: 1px solid var(--accent);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
+		font-size: 2.2rem;
+		transition: var(--transition);
+	}
+	.stat-card:hover .icon-wrapper {
+		transform: scale(1.1);
+		background: var(--accent);
 	}
 	.value {
-		font-size: 2.5rem;
-		font-weight: bold;
-		margin-bottom: 5px;
+		font-size: 2.8rem;
+		font-weight: 700;
+		margin-bottom: 10px;
+		color: var(--white);
+		line-height: 1;
 	}
-	.label {
-		font-size: 1.1rem;
-		opacity: 0.9;
+	.label-group {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+	.label-th {
+		font-size: 1rem;
+		font-weight: 500;
+		color: #E2E8F0;
+	}
+	.label-en {
+		font-size: 0.8rem;
+		color: #A0AEC0;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
 	}
 	@media (max-width: 768px) {
 		.stats-grid {
 			grid-template-columns: repeat(2, 1fr);
+			gap: 20px;
+		}
+	}
+	@media (max-width: 480px) {
+		.stats-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

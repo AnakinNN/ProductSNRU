@@ -1,38 +1,299 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const facilities = [
+	{
+		name: "ห้องปฏิบัติการเครื่องจักรกล CNC (Computer Numerical Control Lab)",
+		description: "เรียนรู้การโปรแกรมและควบคุมเครื่องจักรอุตสาหกรรม CNC สำหรับงานกลึงและงานกัดความละเอียดสูง พร้อมการเชื่อมต่อระบบ CAD/CAM",
+		image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+		icon: "💻"
+	},
+	{
+		name: "ห้องปฏิบัติการระบบอัตโนมัติและหุ่นยนต์ (Industrial Automation & Robotics Lab)",
+		description: "ฝึกปฏิบัติงานกับหุ่นยนต์แขนกลอุตสาหกรรม ระบบนิวเมติกส์ไฮดรอลิกส์ และการควบคุมด้วย PLC เพื่อการขับเคลื่อนอุตสาหกรรม 4.0",
+		image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+		icon: "🤖"
+	},
+	{
+		name: "โรงงานฝึกปฏิบัติงานโรงงานและงานเชื่อม (Manufacturing & Welding Workshop)",
+		description: "ปฏิบัติงานโครงสร้างโลหะ งานเชื่อมชนิดต่าง ๆ (MMA, MIG, TIG, Gas) และงานแปรรูปโลหะแผ่นตามมาตรฐานวิชาชีพ",
+		image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+		icon: "⚡"
+	},
+	{
+		name: "ห้องปฏิบัติการทดสอบวัสดุและโลหะวิทยา (Metallurgy & Materials Testing Lab)",
+		description: "วิเคราะห์โครงสร้างมหภาคและจุลภาคของโลหะ การปรับปรุงคุณสมบัติด้วยความร้อน และการทดสอบแรงดึง แรงกระแทก ความแข็ง",
+		image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+		icon: "🔬"
+	},
+	{
+		name: "ศูนย์ออกแบบด้วยคอมพิวเตอร์ CAD/CAM/CAE (Engineering Design Center)",
+		description: "เพียบพร้อมด้วยเครื่องคอมพิวเตอร์สมรรถนะสูงและซอฟต์แวร์มาตรฐานอุตสาหกรรม (SolidWorks, AutoCAD, Mastercam) สำหรับจำลองการผลิต",
+		image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+		icon: "📐"
+	}
+];
 ---
 
-<Layout title="About - SNRU Clone">
+<Layout title="เกี่ยวกับเรา - สาขาวิชาเครื่องกลการผลิตและอุตสาหการ">
 	<Header />
 	<main class="page-container">
-		<div class="container">
-			<h1>About SNRU</h1>
-			<p>Sakon Nakhon Rajabhat University is a leading educational institution in Northeast Thailand.</p>
-			<div class="content">
-				<h2>Vision</h2>
-				<p>To be a university for local development based on academic excellence and international standards.</p>
-				<h2>Mission</h2>
-				<ul>
-					<li>Provide high-quality education.</li>
-					<li>Conduct research for local and national development.</li>
-					<li>Promote local arts and culture.</li>
-				</ul>
+		<!-- Hero Section -->
+		<section class="about-hero">
+			<div class="hero-overlay"></div>
+			<div class="container hero-content">
+				<h1>เกี่ยวกับเรา / About Us</h1>
+				<p>สาขาวิชาเครื่องกลการผลิตและอุตสาหการ คณะเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยราชภัฏสกลนคร</p>
 			</div>
-		</div>
+		</section>
+
+		<!-- Vision & Mission -->
+		<section class="vision-mission-section">
+			<div class="container">
+				<div class="grid-2">
+					<div class="card vision-card">
+						<div class="card-icon">🎯</div>
+						<h2>วิสัยทัศน์ (Vision)</h2>
+						<p>
+							"เป็นผู้นำในการผลิตนักเทคโนโลยีอุตสาหกรรมและวิศวกรวิชาชีพที่เป็นเลิศด้านเทคโนโลยีเครื่องกลการผลิตและการจัดการอุตสาหกรรม เพื่อพัฒนาและรับใช้ท้องถิ่นอย่างยั่งยืน"
+						</p>
+					</div>
+					<div class="card mission-card">
+						<div class="card-icon">📋</div>
+						<h2>พันธกิจ (Missions)</h2>
+						<ul>
+							<li>จัดการเรียนการสอนที่เน้นการฝึกปฏิบัติจริงร่วมกับภาคอุตสาหกรรมในพื้นที่</li>
+							<li>สร้างงานวิจัยและนวัตกรรมด้านการผลิตเพื่อเพิ่มขีดความสามารถในการแข่งขันของวิสาหกิจชุมชน</li>
+							<li>ให้บริการทางวิชาการและเทคโนโลยีแก่สังคมอย่างทั่วถึง</li>
+							<li>ทำนุบำรุงศิลปวัฒนธรรมและภูมิปัญญาท้องถิ่น</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Facilities Section -->
+		<section class="facilities-section">
+			<div class="container">
+				<h2 class="section-title">ห้องปฏิบัติการ & เครื่องมือปฏิบัติงาน</h2>
+				<p class="section-subtitle">ภาควิชามุ่งเน้นส่งเสริมประสบการณ์ปฏิบัติงานจริงด้วยเครื่องมือและเทคโนโลยีระดับอุตสาหกรรม</p>
+				
+				<div class="facilities-grid">
+					{facilities.map(fac => (
+						<div class="facility-card">
+							<div class="facility-image">
+								<img src={fac.image} alt={fac.name} />
+								<span class="facility-icon">{fac.icon}</span>
+							</div>
+							<div class="facility-info">
+								<h3>{fac.name}</h3>
+								<p>{fac.description}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
 	</main>
-	<footer class="footer">
-		<div class="container">
-			<p>&copy; 2026 Sakon Nakhon Rajabhat University Prototype.</p>
-		</div>
-	</footer>
+	<Footer />
 </Layout>
 
 <style>
-	.page-container { padding: 60px 0; min-height: 70vh; }
-	.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-	h1 { color: var(--primary); margin-bottom: 20px; }
-	h2 { color: var(--primary); margin-top: 30px; }
-	.content { line-height: 1.6; }
-	.footer { background: #333; color: #fff; padding: 40px 0; text-align: center; }
+	.page-container {
+		min-height: 80vh;
+	}
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+	
+	/* About Hero */
+	.about-hero {
+		position: relative;
+		background: url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') no-repeat center center;
+		background-size: cover;
+		padding: 100px 0;
+		color: var(--white);
+		text-align: center;
+	}
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0, 107, 63, 0.8) 0%, rgba(26, 32, 44, 0.9) 100%);
+	}
+	.hero-content {
+		position: relative;
+		z-index: 2;
+	}
+	.hero-content h1 {
+		font-size: 2.8rem;
+		margin: 0 0 10px 0;
+		font-weight: 700;
+	}
+	.hero-content p {
+		font-size: 1.2rem;
+		color: #E2E8F0;
+		margin: 0;
+		font-weight: 300;
+	}
+
+	/* Vision & Mission */
+	.vision-mission-section {
+		padding: 60px 0;
+		background: var(--white);
+	}
+	.grid-2 {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 30px;
+	}
+	.card {
+		background: var(--background);
+		padding: 40px;
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow-sm);
+		border-top: 5px solid var(--primary);
+		transition: var(--transition);
+	}
+	.card:hover {
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-md);
+	}
+	.card-icon {
+		font-size: 2.5rem;
+		margin-bottom: 20px;
+	}
+	.card h2 {
+		color: var(--primary);
+		margin: 0 0 15px 0;
+		font-size: 1.6rem;
+		font-weight: 700;
+	}
+	.vision-card p {
+		font-size: 1.1rem;
+		line-height: 1.8;
+		color: var(--text);
+		margin: 0;
+	}
+	.mission-card ul {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+	.mission-card li {
+		position: relative;
+		padding-left: 20px;
+		line-height: 1.6;
+		color: var(--text);
+	}
+	.mission-card li::before {
+		content: '•';
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		font-weight: bold;
+		font-size: 1.2rem;
+	}
+
+	/* Facilities */
+	.facilities-section {
+		padding: 80px 0;
+		background: var(--background);
+	}
+	.section-subtitle {
+		text-align: center;
+		color: var(--secondary);
+		margin-top: -30px;
+		margin-bottom: 50px;
+		font-size: 1.1rem;
+	}
+	.facilities-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 30px;
+	}
+	.facility-card {
+		background: var(--white);
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		box-shadow: var(--shadow-sm);
+		border: 1px solid #E2E8F0;
+		transition: var(--transition);
+	}
+	.facility-card:hover {
+		transform: translateY(-8px);
+		box-shadow: var(--shadow-lg);
+		border-color: var(--primary-light);
+	}
+	.facility-image {
+		height: 220px;
+		position: relative;
+		overflow: hidden;
+	}
+	.facility-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: var(--transition);
+	}
+	.facility-card:hover .facility-image img {
+		transform: scale(1.05);
+	}
+	.facility-icon {
+		position: absolute;
+		bottom: 15px;
+		right: 15px;
+		background: var(--accent);
+		width: 45px;
+		height: 45px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.3rem;
+		box-shadow: var(--shadow-md);
+	}
+	.facility-info {
+		padding: 25px;
+	}
+	.facility-info h3 {
+		margin: 0 0 12px 0;
+		font-size: 1.15rem;
+		color: var(--primary);
+		font-weight: 700;
+	}
+	.facility-info p {
+		margin: 0;
+		color: var(--secondary);
+		line-height: 1.6;
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 992px) {
+		.grid-2 {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 768px) {
+		.about-hero {
+			padding: 60px 0;
+		}
+		.hero-content h1 {
+			font-size: 2rem;
+		}
+		.hero-content p {
+			font-size: 1rem;
+		}
+		.facilities-grid {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>

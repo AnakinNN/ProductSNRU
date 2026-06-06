@@ -1,24 +1,23 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <header>
 	<div class="top-bar">
 		<div class="container">
-			<span class="university-name">Sakon Nakhon Rajabhat University</span
-			>
+			<span class="university-name">มหาวิทยาลัยราชภัฏสกลนคร • Sakon Nakhon Rajabhat University</span>
 			<div class="top-links">
-				<a href="#">TH/EN</a>
-				<a href="#">Contact</a>
+				<a href="https://snru.ac.th" target="_blank" rel="noopener noreferrer">SNRU Main Site</a>
 			</div>
 		</div>
 	</div>
 	<nav class="main-nav">
 		<div class="container">
 			<div class="logo">
-				<a href={`${base.replace(/\/$/, "")}/`}
-					>สาขาวิชาเครื่องกลการผลิตและอุตสาหการ</a
-				>
+				<a href={`${base}/`}>
+					<span class="logo-sub">สาขาวิชาเครื่องกลการผลิตและอุตสาหการ</span>
+					<span class="logo-main">Production Mechanical & Industrial Engineering</span>
+				</a>
 			</div>
 
 			<button class="mobile-toggle" aria-label="Toggle Menu">
@@ -28,12 +27,11 @@ const base = import.meta.env.BASE_URL;
 			</button>
 
 			<ul class="nav-links">
-				<li><a href={`${base.replace(/\/$/, "")}/about`}>About</a></li>
-				<li>
-					<a href={`${base.replace(/\/$/, "")}/programs`}>Programs</a>
-				</li>
-				<li><a href="#">Admissions</a></li>
-				<li><a href="#">E-Services</a></li>
+				<li><a href={`${base}/`}>หน้าแรก (Home)</a></li>
+				<li><a href={`${base}/about`}>เกี่ยวกับเรา (About)</a></li>
+				<li><a href={`${base}/programs`}>หลักสูตร (Programs)</a></li>
+				<li><a href={`${base}/faculty`}>คณาจารย์ (Faculty)</a></li>
+				<li><a href={`${base}/contact`}>ติดต่อเรา (Contact)</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -52,17 +50,20 @@ const base = import.meta.env.BASE_URL;
 <style>
 	header {
 		width: 100%;
-		background: var(--white);
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+		box-shadow: var(--shadow-sm);
 		position: sticky;
 		top: 0;
 		z-index: 1000;
+		border-bottom: 2px solid var(--primary-light);
 	}
 	.top-bar {
 		background: var(--primary);
 		color: var(--white);
-		padding: 5px 0;
+		padding: 6px 0;
 		font-size: 0.8rem;
+		font-weight: 300;
 	}
 	.container {
 		max-width: 1200px;
@@ -73,27 +74,47 @@ const base = import.meta.env.BASE_URL;
 		padding: 0 20px;
 	}
 	.top-links a {
-		margin-left: 15px;
+		font-weight: bold;
+		color: var(--accent);
+	}
+	.top-links a:hover {
+		color: var(--white);
 	}
 	.main-nav {
-		padding: 15px 0;
-		position: relative;
+		padding: 12px 0;
 	}
 	.logo a {
-		font-size: 1.5rem;
-		font-weight: bold;
+		display: flex;
+		flex-direction: column;
+	}
+	.logo-sub {
+		font-size: 0.95rem;
+		font-weight: 700;
 		color: var(--primary);
+	}
+	.logo-main {
+		font-size: 0.75rem;
+		color: var(--secondary);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-top: 2px;
 	}
 	.nav-links {
 		display: flex;
-		gap: 20px;
+		gap: 25px;
+		align-items: center;
 	}
 	.nav-links a {
 		font-weight: 500;
-		transition: color 0.3s;
+		font-size: 0.9rem;
+		color: var(--secondary);
+		padding: 6px 12px;
+		border-radius: 6px;
+		transition: var(--transition);
 	}
 	.nav-links a:hover {
 		color: var(--primary);
+		background: var(--primary-light);
 	}
 
 	/* Mobile Styles */
@@ -111,7 +132,18 @@ const base = import.meta.env.BASE_URL;
 		width: 25px;
 		height: 3px;
 		background: var(--primary);
-		transition: 0.3s;
+		transition: var(--transition);
+		border-radius: 2px;
+	}
+
+	@media (max-width: 992px) {
+		.nav-links {
+			gap: 15px;
+		}
+		.nav-links a {
+			font-size: 0.85rem;
+			padding: 4px 8px;
+		}
 	}
 
 	@media (max-width: 768px) {
@@ -130,8 +162,9 @@ const base = import.meta.env.BASE_URL;
 			background: var(--white);
 			flex-direction: column;
 			padding: 20px;
-			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+			box-shadow: var(--shadow-lg);
 			gap: 15px;
+			border-top: 1px solid var(--primary-light);
 		}
 		.nav-links.active {
 			display: flex;

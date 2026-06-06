@@ -25,31 +25,85 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 	:root {
-		--primary: #0056b3;
-		--secondary: #6c757d;
-		--background: #f8f9fa;
-		--text: #212529;
+		--primary: #006B3F;
+		--primary-dark: #004D2E;
+		--primary-light: #E8F5E9;
+		--secondary: #4A5568;
+		--accent: #D4AF37;
+		--accent-pink: #E75480;
+		--background: #F7FAFC;
+		--text: #2D3748;
+		--text-light: #718096;
 		--white: #ffffff;
+		--shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+		--shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+		--shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+		--border-radius: 12px;
+		--transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
+	
 	html {
 		font-family: 'Sarabun', sans-serif;
 		background: var(--background);
 		color: var(--text);
+		scroll-behavior: smooth;
 	}
+	
 	body {
 		margin: 0;
 		padding: 0;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
 	}
+
+	main {
+		flex: 1;
+	}
+
 	* {
 		box-sizing: border-box;
 	}
+
 	a {
 		text-decoration: none;
 		color: inherit;
+		transition: var(--transition);
 	}
+
 	ul {
 		list-style: none;
 		padding: 0;
 		margin: 0;
+	}
+
+	/* Simple Animations */
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(10px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.fade-in {
+		animation: fadeIn 0.6s ease forwards;
+	}
+
+	/* Utilities */
+	.section-title {
+		text-align: center;
+		font-size: 2.2rem;
+		color: var(--primary);
+		margin-bottom: 40px;
+		position: relative;
+		font-weight: 700;
+	}
+
+	.section-title::after {
+		content: '';
+		display: block;
+		width: 60px;
+		height: 4px;
+		background: var(--accent);
+		margin: 10px auto 0;
+		border-radius: 2px;
 	}
 </style>

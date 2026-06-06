@@ -1,36 +1,55 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const documents = [
 	{
-		name: "Admission Guidelines 2026",
-		fileName: "sample-form.txt", // Change this to your actual filename later
+		name: "แผนการเรียน หลักสูตรเทคโนโลยีเครื่องกลการผลิต (ปรับปรุง 2568)",
+		nameEn: "Curriculum Map - Production Mechanical Technology (2025 Revised)",
+		fileName: "sample-form.txt",
 		type: "PDF",
-		size: "1.2 MB"
+		size: "2.4 MB"
 	},
 	{
-		name: "University Academic Calendar",
+		name: "แผนการเรียน หลักสูตรเทคโนโลยีอุตสาหการ (ปรับปรุง 2568)",
+		nameEn: "Curriculum Map - Industrial Technology (2025 Revised)",
+		fileName: "sample-form.txt",
+		type: "PDF",
+		size: "2.1 MB"
+	},
+	{
+		name: "คู่มือนักศึกษาใหม่ สาขาวิชาเครื่องกลการผลิตและอุตสาหการ 2569",
+		nameEn: "Student Handbook 2026 - Mechanical & Industrial Dept.",
+		fileName: "sample-form.txt",
+		type: "PDF",
+		size: "4.8 MB"
+	},
+	{
+		name: "แบบฟอร์มเสนอหัวข้อโครงงานพิเศษ (พิเศษ/ปริญญานิพนธ์)",
+		nameEn: "Capstone Project / Thesis Proposal Request Form",
 		fileName: "sample-form.txt",
 		type: "DOCX",
-		size: "850 KB"
+		size: "125 KB"
 	}
 ];
 ---
 <section class="downloads-section">
 	<div class="container">
-		<h2>Download Documents</h2>
+		<h2 class="section-title">เอกสารดาวน์โหลด / Downloads</h2>
 		<div class="download-grid">
 			{documents.map(doc => (
 				<div class="download-item">
-					<div class="file-icon">
-						{doc.type === 'PDF' ? '📕' : '📘'}
+					<div class="file-icon-wrapper" data-type={doc.type}>
+						<span class="file-icon">{doc.type === 'PDF' ? '📕' : '📘'}</span>
+						<span class="type-badge">{doc.type}</span>
 					</div>
 					<div class="file-info">
 						<span class="file-name">{doc.name}</span>
-						<span class="file-meta">{doc.type} • {doc.size}</span>
+						<span class="file-name-en">{doc.nameEn}</span>
+						<span class="file-meta">ขนาดไฟล์: {doc.size}</span>
 					</div>
-					<a href={`${base.replace(/\/$/, '')}/documents/${doc.fileName}`} download class="download-btn">
-						Download
+					<a href={`${base}/documents/${doc.fileName}`} download class="download-btn" title="Download Document">
+						<span class="btn-text">ดาวน์โหลด</span>
+						<span class="btn-arrow">&darr;</span>
 					</a>
 				</div>
 			))}
@@ -40,7 +59,7 @@ const documents = [
 
 <style>
 	.downloads-section {
-		padding: 60px 0;
+		padding: 80px 0;
 		background: var(--background);
 	}
 	.container {
@@ -48,13 +67,9 @@ const documents = [
 		margin: 0 auto;
 		padding: 0 20px;
 	}
-	h2 {
-		color: var(--primary);
-		margin-bottom: 30px;
-	}
 	.download-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 		gap: 20px;
 	}
 	.download-item {
@@ -62,52 +77,106 @@ const documents = [
 		align-items: center;
 		padding: 20px;
 		background: var(--white);
-		border-radius: 8px;
-		box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-		gap: 15px;
-		transition: transform 0.2s;
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow-sm);
+		gap: 20px;
+		transition: var(--transition);
+		border: 1px solid #E2E8F0;
 	}
 	.download-item:hover {
 		transform: translateY(-3px);
-		box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+		box-shadow: var(--shadow-md);
+		border-color: var(--primary-light);
+	}
+	.file-icon-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 65px;
+		height: 65px;
+		background: var(--background);
+		border-radius: 8px;
+		position: relative;
 	}
 	.file-icon {
-		font-size: 2rem;
+		font-size: 1.8rem;
+	}
+	.type-badge {
+		position: absolute;
+		bottom: -5px;
+		font-size: 0.65rem;
+		font-weight: 700;
+		color: var(--white);
+		background: var(--secondary);
+		padding: 2px 6px;
+		border-radius: 4px;
+	}
+	.file-icon-wrapper[data-type="PDF"] .type-badge {
+		background: #E53E3E;
+	}
+	.file-icon-wrapper[data-type="DOCX"] .type-badge {
+		background: #3182CE;
 	}
 	.file-info {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
+		gap: 4px;
 	}
 	.file-name {
-		font-weight: bold;
-		font-size: 1rem;
+		font-weight: 700;
+		font-size: 0.95rem;
 		color: var(--text);
+		line-height: 1.4;
 	}
-	.file-meta {
+	.file-name-en {
 		font-size: 0.8rem;
 		color: var(--secondary);
 	}
+	.file-meta {
+		font-size: 0.75rem;
+		color: var(--text-light);
+	}
 	.download-btn {
-		background: var(--primary);
-		color: var(--white);
-		padding: 8px 16px;
-		border-radius: 4px;
-		font-size: 0.9rem;
-		font-weight: bold;
-		transition: background 0.3s;
+		background: var(--primary-light);
+		color: var(--primary-dark);
+		padding: 10px 18px;
+		border-radius: 6px;
+		font-size: 0.85rem;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		transition: var(--transition);
 	}
 	.download-btn:hover {
-		background: #004494;
+		background: var(--primary);
+		color: var(--white);
+	}
+	.btn-arrow {
+		font-size: 1rem;
+		line-height: 1;
+	}
+
+	@media (max-width: 992px) {
+		.download-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	@media (max-width: 600px) {
 		.download-item {
 			flex-direction: column;
 			text-align: center;
+			padding: 25px;
+		}
+		.file-info {
+			align-items: center;
 		}
 		.download-btn {
 			width: 100%;
+			justify-content: center;
 		}
 	}
 </style>
