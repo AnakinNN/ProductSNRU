@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { CONTACT_INFO } from '../config.js';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -47,22 +48,21 @@ const faqs = [
 								<div class="icon-circle">📍</div>
 								<div class="info-text">
 									<strong>ที่ตั้งสำนักงานสาขา:</strong><br />
-									ตึก 14 อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยราชภัฏสกลนคร<br />
-									680 ถ.นิตโย ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000
+									{CONTACT_INFO.address}
 								</div>
 							</li>
 							<li>
 								<div class="icon-circle">📞</div>
 								<div class="info-text">
 									<strong>เบอร์โทรศัพท์ติดต่อ:</strong><br />
-									042-970-053 (ฝ่ายวิชาการคณะเทคโนโลยีอุตสาหกรรม)
+									{CONTACT_INFO.phone} (ฝ่ายวิชาการคณะเทคโนโลยีอุตสาหกรรม)
 								</div>
 							</li>
 							<li>
 								<div class="icon-circle">✉️</div>
 								<div class="info-text">
 									<strong>อีเมลกลาง:</strong><br />
-									iampk@duck.com
+									{CONTACT_INFO.email}
 								</div>
 							</li>
 							<li>

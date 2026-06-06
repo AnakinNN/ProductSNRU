@@ -1,4 +1,5 @@
 ---
+import { CONTACT_INFO } from '../config.js';
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
@@ -45,11 +46,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 				</li>
 				<li>
 					<span class="icon">📞</span>
-					<span class="text">โทรศัพท์: 042-970-053</span>
+					<span class="text">โทรศัพท์: {CONTACT_INFO.phone}</span>
 				</li>
 				<li>
 					<span class="icon">✉️</span>
-					<span class="text">อีเมล: iampk@duck.com</span>
+					<span class="text">อีเมล: {CONTACT_INFO.email}</span>
 				</li>
 			</ul>
 		</div>
