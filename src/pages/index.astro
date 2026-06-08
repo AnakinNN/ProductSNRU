@@ -55,6 +55,37 @@ import Footer from "../components/Footer.astro";
 			</div>
 		</section>
 
+		<!-- Online Tools Section -->
+		<section class="tools-section">
+			<div class="container">
+				<h2 class="section-title">เครื่องมือออนไลน์ / Online Tools</h2>
+				<div class="tools-grid">
+					<div class="tool-card">
+						<div class="tool-icon-container">
+							<span class="tool-icon">🧮</span>
+						</div>
+						<div class="tool-content">
+							<span class="tool-badge">Web Application</span>
+							<h3>เครื่องคำนวณปูนแดง (Lime Red Calculator)</h3>
+							<p>
+								เครื่องคำนวณหาปริมาณการใช้ปูนแดงจากระดับสารอินดิแคน (Indican)
+								และตัวคูณอัตราส่วนสำหรับใช้ในการผลิตและวิเคราะห์คุณภาพน้ำในกระบวนการผลิตครามธรรมชาติ
+							</p>
+							<div class="tool-footer">
+								<a href="https://anakinnn.github.io/LimeRedCalc/" target="_blank" rel="noopener noreferrer" class="btn-launch">
+									<span>เปิดใช้งานเครื่องมือ / Launch Tool</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+										<polyline points="12 5 19 12 12 19"></polyline>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<Downloads />
 	</main>
 	<Footer />
@@ -101,9 +132,120 @@ import Footer from "../components/Footer.astro";
 		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 	}
 
+	/* Online Tools Styles */
+	.tools-section {
+		padding: 80px 0;
+		background: linear-gradient(180deg, var(--background) 0%, var(--primary-light) 100%);
+		border-top: 1px solid #edf2f7;
+		position: relative;
+	}
+	.tools-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	.tool-card {
+		background: var(--white);
+		border-radius: var(--border-radius);
+		padding: 40px;
+		box-shadow: var(--shadow-md);
+		border: 1px solid #e2e8f0;
+		display: flex;
+		gap: 30px;
+		align-items: center;
+		transition: var(--transition);
+	}
+	.tool-card:hover {
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-lg);
+		border-color: var(--primary);
+	}
+	.tool-icon-container {
+		background: var(--primary-light);
+		width: 90px;
+		height: 90px;
+		border-radius: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 3rem;
+		flex-shrink: 0;
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+	}
+	.tool-content {
+		flex-grow: 1;
+	}
+	.tool-badge {
+		display: inline-block;
+		background: var(--accent);
+		color: var(--primary-dark);
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 4px 10px;
+		border-radius: 30px;
+		margin-bottom: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+	.tool-content h3 {
+		color: var(--primary);
+		font-size: 1.5rem;
+		margin: 0 0 10px 0;
+		font-weight: 700;
+	}
+	.tool-content p {
+		color: var(--secondary);
+		font-size: 0.95rem;
+		line-height: 1.6;
+		margin: 0 0 24px 0;
+	}
+	.btn-launch {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		background: var(--primary);
+		color: var(--white);
+		padding: 12px 24px;
+		border-radius: 8px;
+		font-weight: 700;
+		font-size: 0.95rem;
+		transition: var(--transition);
+		box-shadow: 0 4px 12px rgba(0, 107, 63, 0.2);
+	}
+	.btn-launch:hover {
+		background: var(--primary-dark);
+		box-shadow: 0 6px 20px rgba(0, 107, 63, 0.4);
+		transform: translateX(3px);
+	}
+	.arrow-icon {
+		transition: transform 0.3s ease;
+	}
+	.btn-launch:hover .arrow-icon {
+		transform: translateX(4px);
+	}
+
 	@media (max-width: 992px) {
 		.updates-grid {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.tool-card {
+			flex-direction: column;
+			text-align: center;
+			padding: 30px 20px;
+			gap: 20px;
+		}
+		.tool-icon-container {
+			width: 80px;
+			height: 80px;
+			font-size: 2.5rem;
+		}
+		.btn-launch {
+			width: 100%;
+			justify-content: center;
 		}
 	}
 </style>
