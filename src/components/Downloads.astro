@@ -1,4 +1,5 @@
 ---
+import { KVDB_CONFIG } from '../config.js';
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const documents = [
@@ -37,7 +38,7 @@ const documents = [
 <section class="downloads-section">
 	<div class="container">
 		<h2 class="section-title">เอกสารดาวน์โหลด / Downloads</h2>
-		<div class="download-grid">
+		<div class="download-grid" id="downloads-tracker" data-api={KVDB_CONFIG.apiUrl} data-bucket={KVDB_CONFIG.bucketId}>
 			{documents.map(doc => (
 				<div class="download-item">
 					<div class="file-icon-wrapper" data-type={doc.type}>
@@ -47,16 +48,37 @@ const documents = [
 					<div class="file-info">
 						<span class="file-name">{doc.name}</span>
 						<span class="file-name-en">{doc.nameEn}</span>
-						<span class="file-meta">ขนาดไฟล์: {doc.size}</span>
+						<div class="file-meta-group">
+							<span class="file-meta">ขนาดไฟล์: {doc.size}</span>
+							<span class="meta-divider">|</span>
+							<span class="file-stat" data-file-key={doc.fileName} data-stat="views">👁️ เปิดดู: <strong class="stat-val">--</strong> ครั้ง</span>
+							<span class="meta-divider">|</span>
+							<span class="file-stat" data-file-key={doc.fileName} data-stat="downloads">📥 ดาวน์โหลด: <strong class="stat-val">--</strong> ครั้ง</span>
+						</div>
 					</div>
 					<div class="action-buttons">
 						{doc.type === 'PDF' && (
-							<a href={`${base}/documents/${doc.fileName}`} target="_blank" rel="noopener noreferrer" class="view-btn" title="เปิดดูเอกสาร">
+							<a 
+								href={`${base}/documents/${doc.fileName}`} 
+								target="_blank" 
+								rel="noopener noreferrer" 
+								class="view-btn tracker-btn" 
+								title="เปิดดูเอกสาร"
+								data-file={doc.fileName}
+								data-action="view"
+							>
 								<span class="btn-icon">👁️</span>
 								<span class="btn-text">เปิดดู</span>
 							</a>
 						)}
-						<a href={`${base}/documents/${doc.fileName}`} download class="download-btn" title="ดาวน์โหลดเอกสาร">
+						<a 
+							href={`${base}/documents/${doc.fileName}`} 
+							download 
+							class="download-btn tracker-btn" 
+							title="ดาวน์โหลดเอกสาร"
+							data-file={doc.fileName}
+							data-action="download"
+						>
 							<span class="btn-text">ดาวน์โหลด</span>
 							<span class="btn-arrow">&darr;</span>
 						</a>
@@ -208,9 +230,93 @@ const documents = [
 		.file-info {
 			align-items: center;
 		}
-		.download-btn {
+		.action-buttons {
+			width: 100%;
+			flex-direction: column;
+			gap: 10px;
+		}
+		.download-btn, .view-btn {
 			width: 100%;
 			justify-content: center;
 		}
 	}
+	.file-meta-group {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		font-size: 0.75rem;
+		color: var(--text-light);
+		margin-top: 4px;
+	}
+	.meta-divider {
+		color: #CBD5E0;
+	}
+	.file-stat strong {
+		color: var(--primary);
+		font-weight: 700;
+	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', async () => {
+		const tracker = document.getElementById('downloads-tracker');
+		if (!tracker) return;
+		const api = tracker.getAttribute('data-api');
+		const bucket = tracker.getAttribute('data-bucket');
+		
+		if (!api || !bucket) return;
+
+		// 1. Fetch all counts on load
+		const statsElements = document.querySelectorAll('.file-stat');
+		statsElements.forEach(async (el) => {
+			const fileKey = el.getAttribute('data-file-key');
+			const statType = el.getAttribute('data-stat');
+			if (!fileKey || !statType) return;
+
+			const cleanKey = encodeURIComponent(`doc_${statType}_${fileKey}`);
+			const valElement = el.querySelector('.stat-val');
+			
+			try {
+				const response = await fetch(`${api}/${bucket}/${cleanKey}`);
+				if (response.ok) {
+					const count = await response.text();
+					if (valElement) valElement.textContent = parseInt(count || '0').toLocaleString();
+				} else {
+					if (valElement) valElement.textContent = '0';
+				}
+			} catch (e) {
+				if (valElement) valElement.textContent = '0';
+			}
+		});
+
+		// 2. Track clicks to increment
+		const buttons = document.querySelectorAll('.tracker-btn');
+		buttons.forEach((btn) => {
+			btn.addEventListener('click', async (e) => {
+				const file = btn.getAttribute('data-file');
+				const action = btn.getAttribute('data-action');
+				if (!file || !action) return;
+
+				const statType = action === 'view' ? 'views' : 'downloads';
+				const cleanKey = encodeURIComponent(`doc_${statType}_${file}`);
+				
+				// Find matching text element to update immediately
+				const statElement = document.querySelector(`.file-stat[data-file-key="${CSS.escape(file)}"][data-stat="${statType}"]`);
+				const valElement = statElement?.querySelector('.stat-val');
+
+				try {
+					const response = await fetch(`${api}/${bucket}/${cleanKey}?action=increment&by=1`, {
+						method: 'POST'
+					});
+					if (response.ok) {
+						const count = await response.text();
+						if (valElement) valElement.textContent = parseInt(count).toLocaleString();
+					}
+				} catch (err) {
+					console.error('Error tracking click:', err);
+				}
+			});
+		});
+	});
+</script>

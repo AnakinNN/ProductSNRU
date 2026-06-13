@@ -7,3 +7,9 @@ export const CONTACT_INFO = {
   line: "#",
   youtube: "#"
 };
+
+export const KVDB_CONFIG = {
+  bucketId: "snru_pmie_counter_2026_8b",
+  apiUrl: "https://kvdb.io"
+};
+

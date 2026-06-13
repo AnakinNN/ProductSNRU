@@ -1,5 +1,5 @@
 ---
-import { CONTACT_INFO } from '../config.js';
+import { CONTACT_INFO, KVDB_CONFIG } from '../config.js';
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
@@ -62,15 +62,64 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		</div>
 	</div>
 
-	<div class="footer-bottom">
+	<div class="footer-bottom" id="footer-tracker" data-api={KVDB_CONFIG.apiUrl} data-bucket={KVDB_CONFIG.bucketId}>
 		<div class="container bottom-content">
 			<p>&copy; {new Date().getFullYear()} สาขาวิชาเครื่องกลการผลิตและอุตสาหการ มหาวิทยาลัยราชภัฏสกลนคร. All Rights Reserved.</p>
+			<div class="visitor-counter">
+				<span class="icon">📈</span>
+				<span>ผู้เข้าชมเว็บ: </span>
+				<strong id="visitor-count-val">--</strong>
+				<span> ครั้ง</span>
+			</div>
 			<div class="bottom-links">
 				<a href="https://snru.ac.th" target="_blank" rel="noopener noreferrer">เว็บไซต์มหาวิทยาลัย (SNRU)</a>
 			</div>
 		</div>
 	</div>
 </footer>
+
+<script>
+	document.addEventListener('DOMContentLoaded', async () => {
+		const tracker = document.getElementById('footer-tracker');
+		if (!tracker) return;
+		const api = tracker.getAttribute('data-api');
+		const bucket = tracker.getAttribute('data-bucket');
+		const countElement = document.getElementById('visitor-count-val');
+		
+		if (api && bucket && countElement) {
+			const storageKey = 'snru_visited';
+			const hasVisitedThisSession = sessionStorage.getItem(storageKey);
+			
+			try {
+				let url = `${api}/${bucket}/visitor_hits`;
+				let method = 'GET';
+				
+				// Only increment if they haven't visited in this session to prevent spamming count on refresh
+				if (!hasVisitedThisSession) {
+					url += '?action=increment&by=1';
+					method = 'POST';
+					sessionStorage.setItem(storageKey, 'true');
+				}
+				
+				const response = await fetch(url, { method });
+				if (response.ok) {
+					const count = await response.text();
+					countElement.textContent = parseInt(count).toLocaleString();
+				}
+			} catch (e) {
+				console.error('Error tracking visitor hits:', e);
+				// Fallback to GET count if increment fails
+				try {
+					const response = await fetch(`${api}/${bucket}/visitor_hits`);
+					if (response.ok) {
+						const count = await response.text();
+						countElement.textContent = parseInt(count).toLocaleString();
+					}
+				} catch (err) {}
+			}
+		}
+	});
+</script>
 
 <style>
 	.main-footer {
@@ -203,6 +252,21 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 	}
 	.bottom-content p {
 		margin: 0;
+	}
+	.visitor-counter {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		color: #A0AEC0;
+		font-size: 0.8rem;
+		background: #1A202C;
+		padding: 4px 12px;
+		border-radius: 12px;
+		border: 1px solid #2D3748;
+	}
+	.visitor-counter strong {
+		color: var(--accent);
+		font-weight: 700;
 	}
 	.bottom-links a {
 		color: #718096;
