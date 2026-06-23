@@ -6,7 +6,17 @@ import Footer from '../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 // Highlight a faculty member by setting this object, or keep it null if not applicable.
-const headOfDept = null;
+const headOfDept = {
+	name: "อาจารย์ ดร. สมภาร ดอนจันดา",
+	nameEn: "Ajarn Dr. Somphan Donchanda",
+	title: "ประธานสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+	degree: "ค.ด. (บริหารการศึกษา) มหาวิทยาลัยราชภัฏสกลนคร, ค.อ.ม. (เครื่องกล) สถาบันเทคโนโลยีพระจอมเกล้าพระนครเหนือ, วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี, ค.อ.บ. (วิศวกรรมอุตสาหการ) สถาบันเทคโนโลยีราชมงคล วิทยาเขตขอนแก่น",
+	specialty: "งานเครื่องมือกล, การออกแบบชิ้นส่วนเครื่องจักรกล, การออกแบบอุปกรณ์นำเจาะและจับงาน, เศรษฐศาสตร์วิศวกรรม",
+	// email: "somphan.do@snru.ac.th",
+	office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+	avatar: "SD",
+	image: "/images/faculty/somphan_do.jpg"
+};
 
 const lecturers = [
 	{
@@ -151,17 +161,6 @@ const lecturers = [
 		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
 		avatar: "PK",
 		image: "/images/faculty/patthrapon_ko.jpg"
-	},
-	{
-		name: "อาจารย์ ดร. สมภาร ดอนจันดา",
-		nameEn: "Ajarn Dr. Somphan Donchanda",
-		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
-		degree: "ค.ด. (บริหารการศึกษา) มหาวิทยาลัยราชภัฏสกลนคร, ค.อ.ม. (เครื่องกล) สถาบันเทคโนโลยีพระจอมเกล้าพระนครเหนือ, วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี, ค.อ.บ. (วิศวกรรมอุตสาหการ) สถาบันเทคโนโลยีราชมงคล วิทยาเขตขอนแก่น",
-		specialty: "งานเครื่องมือกล, การออกแบบชิ้นส่วนเครื่องจักรกล, การออกแบบอุปกรณ์นำเจาะและจับงาน, เศรษฐศาสตร์วิศวกรรม",
-		// email: "somphan.do@snru.ac.th",
-		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
-		avatar: "SD",
-		image: "/images/faculty/somphan_do.jpg"
 	},
 	{
 		name: "อาจารย์ ศรสักดิ์ ฤทธิ์มนตรี",
