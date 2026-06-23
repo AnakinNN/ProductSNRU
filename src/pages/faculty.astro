@@ -5,62 +5,236 @@ import Footer from '../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-const headOfDept = {
-	name: "ผศ.ดร. สมชาย มงคลดี",
-	nameEn: "Assist. Prof. Dr. Somchai Mongkoldee",
-	title: "หัวหน้าสาขาวิชาเครื่องกลการผลิตและอุตสาหการ",
-	degree: "ป.เอก: Ph.D. in Mechanical Engineering (Suranaree University of Technology)",
-	specialty: "เครื่องจักรกล CNC, หุ่นยนต์อุตสาหกรรม, ระบบควบคุมอัตโนมัติ (CNC Machines, Industrial Robotics)",
-	email: "somchai.mo@snru.ac.th",
-	office: "ห้องปฏิบัติการ CNC ชั้น 1 อาคารเทคโนโลยีอุตสาหกรรม",
-	avatar: "SM"
-};
+// Highlight a faculty member by setting this object, or keep it null if not applicable.
+const headOfDept = null;
 
 const lecturers = [
 	{
-		name: "อาจารย์ ดร. วิชัย สิทธิชัย",
-		nameEn: "Dr. Wichai Sitthichai",
-		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีอุตสาหการ",
-		degree: "ป.เอก: Ph.D. in Industrial Engineering (Kasetsart University)",
-		specialty: "การควบคุมคุณภาพ, ความปลอดภัยในโรงงาน, การบำรุงรักษาเชิงป้องกัน (QC/QA, HSE, Maintenance)",
-		email: "wichai.si@snru.ac.th",
-		office: "ห้องพักครู 302 ชั้น 3 อาคารเทคโนโลยีอุตสาหกรรม",
-		avatar: "WS"
+		name: "ผศ. ปรีชาศาสตร์ มีเกาะ",
+		nameEn: "Assist. Prof. Preechasart Meekoh",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ศศ.ม. บริหารการศึกษา (มหาวิทยาลัยรามคำแหง), ค.อ.บ. วิศวกรรมเครื่องกล (สถาบันเทคโนโลยีพระจอมเกล้าธนบุรี)",
+		specialty: "วิศวกรรมความปลอดภัย, นวัตกรรมเพื่อชุมชน, การพัฒนาบุคลากรของภาคอุตสาหกรรม",
+		// email: "preechasart.me@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "PM",
+		image: "/images/faculty/preechasart_me.jpg"
 	},
 	{
-		name: "ผศ. สุรพงษ์ แก้วมณี",
-		nameEn: "Assist. Prof. Surapong Kaewmanee",
-		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีเครื่องกลการผลิต",
-		degree: "ป.โท: M.Eng. in Mechanical Engineering (King Mongkut's University of Technology Thonburi)",
-		specialty: "โลหะวิทยา, การอบชุบความร้อน, การเขียนแบบวิศวกรรม CAD/CAM (Metallurgy, CAD/CAM)",
-		email: "surapong.ka@snru.ac.th",
-		office: "ห้องปฏิบัติการวัสดุศาสตร์ ชั้น 2 อาคารเทคโนโลยีอุตสาหกรรม",
-		avatar: "SK"
+		name: "ผศ. สุวิพงษ์ เหมะธุลิน",
+		nameEn: "Assist. Prof. Suwipong Hemathulin",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "วศ.ม. (วิศวกรรมเครื่องกล) มหาวิทยาลัยขอนแก่น, วศ.บ. (วิศวกรรมเครื่องจักรกลการเกษตร) มหาวิทยาลัยขอนแก่น",
+		specialty: "การออกแบบเครื่องจักรกล, การออกแบบเครื่องจักรกลการเกษตร, การวิเคราะห์แบบจำลองด้วยคอมพิวเตอร์, การออกแบบนวัตกรรมเพื่อชุมชน",
+		// email: "suwipong.he@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SH",
+		image: "/images/faculty/suwipong_he.jpg"
 	},
 	{
-		name: "อาจารย์ กนกวรรณ จันทร์สว่าง",
-		nameEn: "Ajarn Kanokwan Chanthaswang",
-		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีอุตสาหการ",
-		degree: "ป.โท: M.Eng. in Industrial Engineering (Khon Kaen University)",
-		specialty: "การวางแผนและควบคุมการผลิต, โลจิสติกส์และโซ่อุปทาน, ระบบลีน (Production Planning, Logistics, Lean)",
-		email: "kanokwan.ch@snru.ac.th",
-		office: "ห้องพักครู 304 ชั้น 3 อาคารเทคโนโลยีอุตสาหกรรม",
-		avatar: "KC"
+		name: "ผศ. ดร. กัลยา กิตติเลิศไพศาล",
+		nameEn: "Assist. Prof. Dr. Kanlaya Kittilertpaisan",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยขอนแก่น, M.Eng.Sci. (Development Technologies) University of Melbourne (Australia), วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยขอนแก่น (เกียรตินิยมอันดับ 2)",
+		specialty: "การวางแผนและควบคุมการผลิต, การวิจัยและดำเนินงาน, การศึกษางานและปรับปรุงกระบวนการผลิต",
+		// email: "kanlaya.ki@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "KK",
+		image: "/images/faculty/kanlaya_ki.jpg"
 	},
 	{
-		name: "อาจารย์ เกียรติศักดิ์ พรหมทัต",
-		nameEn: "Ajarn Kiattisak Promthat",
-		title: "อาจารย์ประจำหลักสูตรเทคโนโลยีเครื่องกลการผลิต",
-		degree: "ป.โท: M.Eng. in Manufacturing Engineering (King Mongkut's Institute of Technology Ladkrabang)",
-		specialty: "เทคโนโลยีการเชื่อมอุตสาหกรรม, การตรวจสอบรอยเชื่อมแบบไม่ทำลาย, งานโลหะแผ่น (Welding Tech, NDT)",
-		email: "kiattisak.pr@snru.ac.th",
-		office: "โรงเรือนปฏิบัติงานเชื่อม ชั้น 1 อาคารเทคโนโลยีอุตสาหกรรม",
-		avatar: "KP"
+		name: "ผศ. ธฏษธรรฆ์ ลาโสภา",
+		nameEn: "Assist. Prof. Thattsathankan Lasopha",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ค.อ.ม. (เครื่องกล) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ, วท.บ. (เทคโนโลยีการผลิต) มหาวิทยาลัยราชภัฏสกลนคร",
+		specialty: "คอมพิวเตอร์เพื่อการออกแบบเขียนแบบ, เทคโนโลยีเครื่องจักรกลอัตโนมัติ, การออกแบบนวัตกรรมเพื่อชุมชน",
+		// email: "thattsathankan.la@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "TL",
+		image: "/images/faculty/thattsathankan_la.jpg"
+	},
+	{
+		name: "ผศ. ดร. สิทธินันท์ บุญเลิศ",
+		nameEn: "Assist. Prof. Dr. Sittinan Boonlert",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมศาสตร์) มหาวิทยาลัยราชภัฏสกลนคร, วศ.ม. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี, วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีราชมงคลพระนครเหนือ",
+		specialty: "วัสดุวิศวกรรม, การปรับปรุงคุณสมบัติทางวัสดุ, โลหะวิทยา โครงสร้างและการทดสอบวัสดุ",
+		// email: "sittinan.bo@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SB",
+		image: "/images/faculty/sittinan_bo.jpg"
+	},
+	{
+		name: "ผศ. ดร. ไวรุจน์ อิ่มโพ",
+		nameEn: "Assist. Prof. Dr. Wairut Impho",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยอุบลราชธานี, ค.อ.ม. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี, อส.บ. (เทคโนโลยีการเชื่อม) สถาบันเทคโนโลยีพระจอมเกล้าพระนครเหนือ",
+		specialty: "คอมพิวเตอร์เพื่อการออกแบบ, การจัดการอุตสาหกรรม, การออกแบบนวัตกรรมและสิ่งประดิษฐ์เพื่อชุมชน",
+		// email: "wairut.im@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "WI",
+		image: "/images/faculty/wairut_im.jpg"
+	},
+	{
+		name: "อาจารย์ ภัคนาท ศรีมหาทรัพย์",
+		nameEn: "Ajarn Phakkanat Srimahasap",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "วท.ม. (การจัดการโลจิสติกส์) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี, วศ.ม. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",
+		specialty: "การออกแบบ การควบคุม และปรับปรุงกระบวนการผลิต, การออกแบบและจัดการโซ่อุปทานและโลจิสติกส์, การพึ่งพาตนเองด้วยหลักการเศรษฐกิจพอเพียงของในหลวง ร.9",
+		// email: "phakkanat.sr@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "PS",
+		image: "/images/faculty/phakkanat_sr.jpg"
+	},
+	{
+		name: "อาจารย์ ศิริพร ตั้งวิบูลย์พาณิชย์",
+		nameEn: "Ajarn Siriporn Tangwiboonpanich",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "วศ.ม. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ, วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยขอนแก่น",
+		specialty: "การปรับปรุงประสิทธิภาพการผลิต, การวิเคราะห์ต้นทุน, การลดต้นทุนการผลิต",
+		// email: "siriporn.ta@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "ST",
+		image: "/images/faculty/siriporn_ta.jpg"
+	},
+	{
+		name: "ผศ. ดร. ศรลักษณ์ พวงใบดี",
+		nameEn: "Assist. Prof. Dr. Soralak Phuangbaidee",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมศาสตร์) มหาวิทยาลัยราชภัฏสกลนคร, ค.อ.ม. (วิศวกรรมเครื่องกล) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี, อส.บ. (เทคโนโลยีเครื่องกล) มหาวิทยาลัยเทคโนโลยีราชมงคลอีสาน วิทยาเขตสกลนคร",
+		specialty: "ระบบนิวเมติกส์และไฮดรอลิกส์, เครื่องยนต์เล็กและจักรยานยนต์, เครื่องจักรกลการเกษตร, เทคโนโลยียานยนต์",
+		// email: "soralak.ph@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SP",
+		image: "/images/faculty/soralak_ph.jpg"
+	},
+	{
+		name: "ผศ. ดร. ภาณุวัฒน์ วงศ์แสงน้อย",
+		nameEn: "Assist. Prof. Dr. Panuwat Wongsaengnoi",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยอุบลราชธานี, วศ.ม. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยอุบลราชธานี, วท.บ. (เทคโนโลยีการผลิต) มหาวิทยาลัยราชภัฏสกลนคร",
+		specialty: "งานเครื่องมือกล, งานขึ้นรูปโลหะและวัสดุโลหะ, การออกแบบนวัตกรรมและสิ่งประดิษฐ์เพื่อชุมชน",
+		// email: "panuwat.wo@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "PW",
+		image: "/images/faculty/panuwat_wo.jpg"
+	},
+	{
+		name: "อาจารย์ ภานุวัฒน์ บุญตาท้าว",
+		nameEn: "Ajarn Panuwat Boontathao",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "กำลังศึกษาปริญญาเอก ปร.ด. (วิศวกรรมเครื่องกล) มหาวิทยาลัยธรรมศาสตร์, วศ.ม. (วิศวกรรมเครื่องกลและการออกแบบ) มหาวิทยาลัยเกษตรศาสตร์, วศ.บ. (วิศวกรรมปิโตรเคมีและวัสดุพอลิเมอร์) มหาวิทยาลัยศิลปากร",
+		specialty: "ชีวการแพทย์, พลังงานทางเลือก, เทคโนโลยียานยนต์",
+		// email: "panuwat.bo@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "PB",
+		image: "/images/faculty/panuwat_bo.jpg"
+	},
+	{
+		name: "ผศ. ดร. สาคร อินทะชัย",
+		nameEn: "Assist. Prof. Dr. Sakorn Inthachai",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมเครื่องกล) มหาวิทยาลัยมหาสารคาม, วศ.ม. (วิศวกรรมเครื่องกล) มหาวิทยาลัยมหาสารคาม, วศ.บ. (วิศวกรรมเครื่องกล) มหาวิทยาลัยมหาสารคาม",
+		specialty: "เทคโนโลยีอบแห้ง, การแปรรูปด้วยความร้อนสำหรับสินค้าเกษตร, การอนุรักษ์พลังงานและการจัดการพลังงาน",
+		// email: "sakorn.in@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SI",
+		image: "/images/faculty/sakorn_in.jpg"
+	},
+	{
+		name: "ผศ. ภัทราพล กองทรัพย์",
+		nameEn: "Assist. Prof. Patthrapon Kongsap",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "กำลังศึกษาปริญญาเอก PhD (Civil Engineering) The University of Birmingham, วศ.ม. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยขอนแก่น, วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยขอนแก่น",
+		specialty: "Multi-Agent Systems, Data-driven modeling for complex infrastructure, Operation Research and Optimization, Production Planning and Quality Control",
+		// email: "patthrapon.ko@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "PK",
+		image: "/images/faculty/patthrapon_ko.jpg"
+	},
+	{
+		name: "อาจารย์ ดร. สมภาร ดอนจันดา",
+		nameEn: "Ajarn Dr. Somphan Donchanda",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ค.ด. (บริหารการศึกษา) มหาวิทยาลัยราชภัฏสกลนคร, ค.อ.ม. (เครื่องกล) สถาบันเทคโนโลยีพระจอมเกล้าพระนครเหนือ, วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี, ค.อ.บ. (วิศวกรรมอุตสาหการ) สถาบันเทคโนโลยีราชมงคล วิทยาเขตขอนแก่น",
+		specialty: "งานเครื่องมือกล, การออกแบบชิ้นส่วนเครื่องจักรกล, การออกแบบอุปกรณ์นำเจาะและจับงาน, เศรษฐศาสตร์วิศวกรรม",
+		// email: "somphan.do@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SD",
+		image: "/images/faculty/somphan_do.jpg"
+	},
+	{
+		name: "อาจารย์ ศรสักดิ์ ฤทธิ์มนตรี",
+		nameEn: "Ajarn Sornsak Rithmontree",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ค.อ.ม. (วิศวกรรมเครื่องกล) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี, ค.อ.บ. (วิศวกรรมเครื่องกล) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",
+		specialty: "เทคโนโลยียานยนต์ไฟฟ้าและแบตเตอรี่, เครื่องยนต์เล็กและจักรยานยนต์, ระบบไฟฟ้าและเทคโนโลยียานยนต์",
+		// email: "sornsak.ri@snru.ac.th",
+		office: "โรงเรือนปฏิบัติงานเครื่องกล อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SR",
+		image: "/images/faculty/sornsak_ri.jpg"
+	},
+	{
+		name: "อาจารย์ ดร. ฮารูน่า โอคาดะ",
+		nameEn: "Ajarn Dr. Haruna Okada",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมเครื่องกล) มหาวิทยาลัยวิสคอนซิน-แมดิสัน, วศ.ม. (วิศวกรรมอุตสาหกรรม) มหาวิทยาลัยมินนิโซตา ทวินซิตี้ส์, วศ.บ. (วิศวกรรมเครื่องกล) สถาบันเทคโนโลยีวูสเตอร์",
+		specialty: "อุปกรณ์สเปกโทรสโกปีและเซนเซอร์, เทคนิคการถ่ายภาพเชิงสเปกตรัม, การวิเคราะห์ข้อมูลสเปกโทรสโกปี",
+		// email: "haruna.ok@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "HO",
+		image: "/images/faculty/haruna_ok.jpg"
+	},
+	{
+		name: "อาจารย์ ดร. วนัชพร นามหงษา",
+		nameEn: "Ajarn Dr. Wanatchaporn Namhongsa",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (ฟิสิกส์) มหาวิทยาลัยราชภัฏสกลนคร, วท.ม. (ฟิสิกส์) มหาวิทยาลัยราชภัฏสกลนคร, วท.บ. (ฟิสิกส์) มหาวิทยาลัยราชภัฏสกลนคร",
+		specialty: "ฟิสิกส์วิศวกรรม, เทอร์โมอิเล็กทริก, วัสดุวิศวกรรม",
+		// email: "wanatchaporn.na@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "WN",
+		image: "/images/faculty/wanatchaporn_na.jpg"
+	},
+	{
+		name: "ผศ. ดร. นุจิรา โคตรหานาม",
+		nameEn: "Assist. Prof. Dr. Nujira Kotahanam",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยขอนแก่น, วศ.ม. (วิศวกรรมการผลิต) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ, วศ.บ. (วิศวกรรมอุตสาหการ) มหาวิทยาลัยรามคำแหง",
+		specialty: "วัสดุวิศวกรรม, การปรับปรุงประสิทธิภาพการผลิต, การตรวจสอบกระบวนการผลิต",
+		// email: "nujira.ko@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "NK",
+		image: "/images/faculty/nujira_ko.jpg"
+	},
+	{
+		name: "อาจารย์ ดร. สุรศักดิ์ ร่วมรักษ์",
+		nameEn: "Ajarn Dr. Surasak Ruamrak",
+		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+		degree: "ปร.ด. (ฟิสิกส์) มหาวิทยาลัยราชภัฏสกลนคร, วท.ม. (ฟิสิกส์) มหาวิทยาลัยราชภัฏสกลนคร, วท.บ. (ฟิสิกส์) มหาวิทยาลัยราชภัฏสกลนคร",
+		specialty: "ฟิสิกส์วิศวกรรม, เทอร์โมอิเล็กทริก, วัสดุวิศวกรรม",
+		// email: "surasak.ru@snru.ac.th",
+		office: "ห้องพักครู อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "SR",
+		image: "/images/faculty/surasak_ru.jpg"
+	}
+];
+
+const staffMembers = [
+	{
+		name: "นางสาวมณฑาทิพย์ สะท้านไตรภพ (พี่จีน)",
+		nameEn: "Ms. Monthathip Sathan-traiphop",
+		title: "เจ้าหน้าที่บริหารงานทั่วไป",
+		specialty: "งานบริหารงานทั่วไป, งานสารบัญ, ประสานงานทั่วไปประจำสาขาวิชา",
+		// email: "monthathip.sa@snru.ac.th",
+		office: "ห้องสำนักงานสาขาวิชาเครื่องกลและการผลิต อาคารเทคโนโลยีอุตสาหกรรม",
+		avatar: "MS",
+		image: "/images/faculty/monthathip_sa.jpg"
 	}
 ];
 ---
 
-<Layout title="คณาจารย์และบุคลากร - สาขาวิชาเครื่องกลการผลิตและอุตสาหการ">
+<Layout title="คณาจารย์และบุคลากร - สาขาวิชาวิศวกรรมเครื่องกลและการผลิต">
 	<Header />
 	<main class="page-container">
 		<!-- Hero Section -->
@@ -73,38 +247,48 @@ const lecturers = [
 		</section>
 
 		<!-- Head of Department Highlight -->
-		<section class="head-highlight-section">
-			<div class="container">
-				<h2 class="section-title">หัวหน้าสาขาวิชา / Department Head</h2>
-				
-				<div class="head-card fade-in">
-					<div class="head-avatar-wrapper">
-						<div class="avatar-circle">{headOfDept.avatar}</div>
-					</div>
-					<div class="head-info">
-						<span class="title-badge">{headOfDept.title}</span>
-						<h3>{headOfDept.name}</h3>
-						<span class="en-name">{headOfDept.nameEn}</span>
-						<hr class="divider" />
-						<p class="credential">🎓 <strong>วุฒิการศึกษา:</strong> {headOfDept.degree}</p>
-						<p class="specialty">⚙️ <strong>ความเชี่ยวชาญ:</strong> {headOfDept.specialty}</p>
-						<p class="office">📍 <strong>ห้องพัก/สำนักงาน:</strong> {headOfDept.office}</p>
-						<p class="email">✉️ <strong>อีเมลติดต่อ:</strong> <a href={`mailto:${headOfDept.email}`}>{headOfDept.email}</a></p>
+		{headOfDept && (
+			<section class="head-highlight-section">
+				<div class="container">
+					<h2 class="section-title">หัวหน้าสาขาวิชา / Department Head</h2>
+					
+					<div class="head-card fade-in">
+						<div class="head-avatar-wrapper">
+							{headOfDept.image ? (
+								<img src={`${base}${headOfDept.image}`} alt={headOfDept.name} class="head-avatar-img" />
+							) : (
+								<div class="avatar-circle">{headOfDept.avatar}</div>
+							)}
+						</div>
+						<div class="head-info">
+							<span class="title-badge">{headOfDept.title}</span>
+							<h3>{headOfDept.name}</h3>
+							<span class="en-name">{headOfDept.nameEn}</span>
+							<hr class="divider" />
+							<p class="credential">🎓 <strong>วุฒิการศึกษา:</strong> {headOfDept.degree}</p>
+							<p class="specialty">⚙️ <strong>ความเชี่ยวชาญ:</strong> {headOfDept.specialty}</p>
+							<p class="office">📍 <strong>ห้องพัก/สำนักงาน:</strong> {headOfDept.office}</p>
+							{headOfDept.email && <p class="email">✉️ <strong>อีเมลติดต่อ:</strong> <a href={`mailto:${headOfDept.email}`}>{headOfDept.email}</a></p>}
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		)}
 
 		<!-- Faculty Grid -->
 		<section class="faculty-grid-section">
 			<div class="container">
-				<h2 class="section-title">อาจารย์ประจำหลักสูตร / Faculty Members</h2>
+				<h2 class="section-title">อาจารย์ประจำสาขาวิชา / Faculty Members</h2>
 				
 				<div class="faculty-grid">
 					{lecturers.map(lect => (
 						<div class="faculty-card">
 							<div class="card-avatar-wrapper">
-								<div class="avatar-circle">{lect.avatar}</div>
+								{lect.image ? (
+									<img src={`${base}${lect.image}`} alt={lect.name} class="avatar-image" />
+								) : (
+									<div class="avatar-circle">{lect.avatar}</div>
+								)}
 							</div>
 							<div class="card-info">
 								<span class="role-tag">{lect.title}</span>
@@ -115,7 +299,7 @@ const lecturers = [
 								<p class="specialty"><strong>ความเชี่ยวชาญ:</strong> {lect.specialty}</p>
 								<div class="contact-details">
 									<span>📍 {lect.office}</span>
-									<span>✉️ <a href={`mailto:${lect.email}`}>{lect.email}</a></span>
+									{lect.email && <span>✉️ <a href={`mailto:${lect.email}`}>{lect.email}</a></span>}
 								</div>
 							</div>
 						</div>
@@ -123,6 +307,40 @@ const lecturers = [
 				</div>
 			</div>
 		</section>
+
+		<!-- Staff Section -->
+		{staffMembers.length > 0 && (
+			<section class="staff-section">
+				<div class="container">
+					<h2 class="section-title">บุคลากรสายสนับสนุน / Support Staff</h2>
+					
+					<div class="faculty-grid">
+						{staffMembers.map(staff => (
+							<div class="faculty-card">
+								<div class="card-avatar-wrapper">
+									{staff.image ? (
+										<img src={`${base}${staff.image}`} alt={staff.name} class="avatar-image" />
+									) : (
+										<div class="avatar-circle">{staff.avatar}</div>
+									)}
+								</div>
+								<div class="card-info">
+									<span class="role-tag">{staff.title}</span>
+									<h3>{staff.name}</h3>
+									<span class="en-name">{staff.nameEn}</span>
+									<hr class="divider-sm" />
+									<p class="specialty"><strong>ภาระหน้าที่:</strong> {staff.specialty}</p>
+									<div class="contact-details">
+										<span>📍 {staff.office}</span>
+										{staff.email && <span>✉️ <a href={`mailto:${staff.email}`}>{staff.email}</a></span>}
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+		)}
 	</main>
 	<Footer />
 </Layout>
@@ -256,7 +474,7 @@ const lecturers = [
 
 	/* Faculty Grid Section */
 	.faculty-grid-section {
-		padding: 60px 0 80px 0;
+		padding: 60px 0 40px 0;
 		background: var(--background);
 	}
 	.faculty-grid {
@@ -337,6 +555,27 @@ const lecturers = [
 	}
 	.contact-details a:hover {
 		text-decoration: underline;
+	}
+
+	.avatar-image {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		object-fit: cover;
+		box-shadow: 0 4px 10px rgba(0, 107, 63, 0.15);
+		border: 3px solid var(--white);
+	}
+	.head-avatar-img {
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		object-fit: cover;
+		box-shadow: 0 4px 14px rgba(0, 107, 63, 0.3);
+		border: 4px solid var(--white);
+	}
+	.staff-section {
+		padding: 40px 0 80px 0;
+		background: var(--background);
 	}
 
 	@media (max-width: 992px) {
