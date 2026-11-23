@@ -1,20 +1,31 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const applicationUrl = "https://regis.snru.ac.th/65_r3_sigup";
+const applicationGuideUrl = "https://regis.snru.ac.th/step_regis.php";
 ---
 <section class="hero">
 	<div class="hero-overlay"></div>
 	<div class="hero-content fade-in">
-		<span class="hero-badge">Department of Production Mechanical & Industrial Engineering</span>
+		<span class="hero-badge">รับสมัครนักศึกษาใหม่ ปีการศึกษา 2570 · รอบที่ 3</span>
 		<h1>
-			<span class="highlight">เครื่องกลการผลิต</span> & <span class="highlight-alt">อุตสาหการ</span>
+			<span class="highlight">เรียนวิศวกรรมจากการลงมือทำจริง</span>
+			<span class="highlight-alt">ต่อยอดสู่อุตสาหกรรม</span>
 		</h1>
 		<p class="hero-subtitle">
-			มุ่งเน้นความเป็นเลิศทางด้านวิศวกรรมการผลิต เทคโนโลยีเครื่องจักรกล และการบริหารจัดการอุตสาหกรรมยุคใหม่ ณ มหาวิทยาลัยราชภัฏสกลนคร
+			เรียนรู้ตั้งแต่เครื่องจักรและกระบวนการผลิต ไปจนถึงระบบโลจิสติกส์
+			เลือกเส้นทางที่ใช่จาก 2 หลักสูตร: วิศวกรรมเครื่องกลและการผลิต หรือวิศวกรรมการผลิตและโลจิสติกส์
 		</p>
-		<div class="hero-ctas">
-			<a href={`${base}/programs`} class="btn btn-primary">ดูหลักสูตร / Explore Programs</a>
-			<a href={`${base}/contact`} class="btn btn-outline">ติดต่อเรา / Contact Us</a>
+		<div class="admission-info" aria-label="ข้อมูลรับสมัคร">
+			<strong>สมัครได้ถึง 7 พฤษภาคม 2570</strong>
+			<span>รอบรับตรงทั่วไป · สมัครออนไลน์ · ไม่ต้องสอบข้อเขียน</span>
 		</div>
+		<div class="hero-ctas">
+			<a href={applicationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">สมัครเรียน ปี 2570</a>
+			<a href={`${base}/programs`} class="btn btn-outline">ดูหลักสูตร</a>
+		</div>
+		<a href={applicationGuideUrl} target="_blank" rel="noopener noreferrer" class="hero-guide">
+			ดูขั้นตอนสมัครและคุณสมบัติผู้สมัคร <span aria-hidden="true">↗</span>
+		</a>
 	</div>
 </section>
 
@@ -49,7 +60,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		margin: 0 auto;
 	}
 	.hero-badge {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
 		background: rgba(212, 175, 55, 0.15);
 		border: 1px solid var(--accent);
 		color: var(--accent);
@@ -66,6 +78,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		line-height: 1.2;
 		margin: 0 0 20px 0;
 		font-weight: 700;
+	}
+	.hero-content h1 span {
+		display: block;
 	}
 	.highlight {
 		color: var(--white);
@@ -84,11 +99,37 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		margin-left: auto;
 		margin-right: auto;
 	}
+	.admission-info {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 6px 18px;
+		margin: 0 auto 28px;
+		color: #f7fafc;
+		font-size: 0.95rem;
+	}
+	.admission-info strong {
+		color: var(--accent);
+	}
 	.hero-ctas {
 		display: flex;
 		gap: 20px;
 		justify-content: center;
 		align-items: center;
+		flex-wrap: wrap;
+	}
+	.hero-guide {
+		display: inline-block;
+		margin-top: 18px;
+		color: var(--white);
+		font-size: 0.95rem;
+		text-decoration: underline;
+		text-decoration-color: rgba(255, 255, 255, 0.65);
+		text-underline-offset: 4px;
+	}
+	.hero-guide:hover {
+		color: var(--accent);
 	}
 	.btn {
 		padding: 14px 28px;
@@ -100,16 +141,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		display: inline-block;
 	}
 	.btn-primary {
-		background: var(--primary);
-		color: var(--white);
-		border: 2px solid var(--primary);
-		box-shadow: 0 4px 14px rgba(0, 107, 63, 0.4);
+		background: var(--accent);
+		color: var(--primary-dark);
+		border: 2px solid var(--accent);
+		box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
 	}
 	.btn-primary:hover {
-		background: var(--primary-dark);
-		border-color: var(--primary-dark);
+		background: #e6c54d;
+		border-color: #e6c54d;
 		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(0, 107, 63, 0.6);
+		box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
 	}
 	.btn-outline {
 		background: transparent;
@@ -125,12 +166,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 	@media (max-width: 768px) {
 		.hero {
 			min-height: 480px;
+			height: auto;
+			padding: 56px 20px;
 		}
 		.hero-content h1 {
 			font-size: 2.2rem;
 		}
+		.hero-badge {
+			font-size: 0.75rem;
+			padding: 6px 12px;
+		}
 		.hero-subtitle {
 			font-size: 1rem;
+		}
+		.admission-info {
+			flex-direction: column;
+			gap: 4px;
+			font-size: 0.9rem;
 		}
 		.hero-ctas {
 			flex-direction: column;
