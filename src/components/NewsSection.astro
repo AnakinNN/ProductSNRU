@@ -1,52 +1,66 @@
 ---
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
 const newsItems = [
 	{
-		title: "นักศึกษาสาขาเครื่องกลการผลิตคว้ารางวัลชนะเลิศนวัตกรรมหุ่นยนต์ระดับประเทศ",
-		titleEn: "Production Mechanical Students Win National Robot Innovation Award",
-		date: "5 มิถุนายน 2569",
-		image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-		category: "รางวัล / Awards"
+		title: "วิพากษ์หลักสูตรวิศวกรรมเครื่องกลและการผลิต ปีการศึกษา 2570",
+		titleEn: "Mechanical and Production Engineering Program Review",
+		date: "31 พฤษภาคม 2569",
+		description: "รับฟังข้อเสนอแนะจากผู้ทรงคุณวุฒิ เพื่อพัฒนาหลักสูตรและยื่นขอรับรองจากสภาวิศวกร",
+		image: "https://itech.snru.ac.th/wp-content/uploads/2026/05/708813776_27294066486890044_8835181024243514041_n-1024x768.jpg",
+		category: "พัฒนาหลักสูตร",
+		sourceUrl: "https://itech.snru.ac.th/topics/7869"
 	},
 	{
-		title: "เปิดตัวห้องปฏิบัติการ CNC และระบบควบคุมอัตโนมัติอัจฉริยะเพื่อการเรียนรู้เชิงลึก",
-		titleEn: "Launch of Smart CNC & Industrial Automation Laboratory for Deep Learning",
-		date: "3 มิถุนายน 2569",
-		image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-		category: "ห้องปฏิบัติการ / Labs"
+		title: "เตรียมความพร้อมฝึกงาน: จากชีวิตในห้องเรียนสู่วิศวกรตัวจริง",
+		titleEn: "Preparing Fourth-Year Students for Industrial Internships",
+		date: "18 กรกฎาคม 2568",
+		description: "วิทยากรจากภาคอุตสาหกรรมแบ่งปันประสบการณ์ พร้อมแนะนำการทำ Resume และการเตรียมตัวฝึกงาน",
+		image: "https://itech.snru.ac.th/wp-content/uploads/2025/07/519847806_1301743075289844_6195563562746409921_n-1024x577.jpg",
+		category: "เตรียมฝึกประสบการณ์",
+		sourceUrl: "https://itech.snru.ac.th/topics/7118"
 	},
 	{
-		title: "ความร่วมมือทางวิชาการกับภาคอุตสาหกรรมหลักสูตรวิศวกรรมการผลิต",
-		titleEn: "Academic Collaboration with Industrial Partners for Manufacturing Curriculum",
-		date: "28 พฤษภาคม 2569",
-		image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-		category: "ความร่วมมือ / Collaboration"
+		title: "ตรวจประเมินคุณภาพหลักสูตรวิศวกรรมเครื่องกลและการผลิต",
+		titleEn: "Internal Quality Assessment for the B.Eng. Program",
+		date: "20 มิถุนายน 2568",
+		description: "การประเมินคุณภาพการศึกษาภายในระดับหลักสูตร วศ.บ. ประจำปีการศึกษา 2567 ณ อาคารปฏิบัติการวิศวกรรมและเทคโนโลยีอุตสาหกรรม",
+		image: "",
+		category: "ประกันคุณภาพ",
+		sourceUrl: "https://itech.snru.ac.th/topics/6974"
 	}
 ];
 ---
 <section class="news-section">
 	<div class="container">
-		<h2 class="section-title">ข่าวประชาสัมพันธ์ & กิจกรรม</h2>
-		<p class="section-subtitle">อัปเดตข้อมูลข่าวสารล่าสุด กิจกรรมเด่น และรางวัลความสำเร็จของสาขาวิชา</p>
+		<h2 class="section-title">กิจกรรมและความเคลื่อนไหวของสาขา</h2>
+		<p class="section-subtitle">ข่าวการพัฒนาหลักสูตร การเตรียมฝึกงาน และกิจกรรมจากเว็บไซต์คณะเทคโนโลยีอุตสาหกรรม</p>
 		
 		<div class="news-grid">
 			{newsItems.map(item => (
 				<article class="news-card">
 					<div class="image-wrapper">
-						<img 
-							src={item.image} 
-							alt={item.title} 
-						/>
+						{item.image ? (
+							<img src={item.image} alt={item.title} loading="lazy" />
+						) : (
+							<div class="image-placeholder" aria-hidden="true"><span>⚙</span></div>
+						)}
 						<span class="category">{item.category}</span>
 					</div>
 					<div class="news-info">
 						<span class="date">📅 {item.date}</span>
 						<h3>{item.title}</h3>
 						<p class="title-en">{item.titleEn}</p>
+						<p class="description">{item.description}</p>
+						<a class="source-link" href={item.sourceUrl} target="_blank" rel="noopener noreferrer">
+							อ่านข่าวต้นฉบับ <span aria-hidden="true">↗</span>
+						</a>
 					</div>
 				</article>
 			))}
+		</div>
+		<div class="all-news-link">
+			<a href="https://itech.snru.ac.th/topics/category/activities" target="_blank" rel="noopener noreferrer">
+				ดูกิจกรรมเพิ่มเติมจากเว็บไซต์คณะ <span aria-hidden="true">↗</span>
+			</a>
 		</div>
 	</div>
 </section>
@@ -141,6 +155,44 @@ const newsItems = [
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+	}
+	.description {
+		color: var(--text);
+		font-size: 0.92rem;
+		line-height: 1.6;
+		margin: 14px 0 20px;
+	}
+	.image-placeholder {
+		width: 100%;
+		height: 100%;
+		display: grid;
+		place-items: center;
+		background: linear-gradient(135deg, var(--primary-light), #d8e9df);
+		color: var(--primary);
+	}
+	.image-placeholder span {
+		font-size: 4rem;
+		opacity: 0.75;
+	}
+	.source-link {
+		margin-top: auto;
+		color: var(--primary);
+		font-size: 0.9rem;
+		font-weight: 700;
+	}
+	.source-link:hover,
+	.all-news-link a:hover {
+		color: var(--primary-dark);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+	.all-news-link {
+		margin-top: 36px;
+		text-align: center;
+	}
+	.all-news-link a {
+		color: var(--primary);
+		font-weight: 700;
 	}
 	
 	@media (max-width: 768px) {
