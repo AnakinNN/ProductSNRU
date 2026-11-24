@@ -54,7 +54,7 @@ const lecturers = [
 	},
 	{
 		name: "ผศ. ธฏษธรรมช์ ลาโสภา",
-		nameEn: "Assist. Prof. THodsatham Lasopha",
+		nameEn: "Assist. Prof. Thodsatham Lasopha",
 		title: "อาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
 		degree: "ค.อ.ม. (เครื่องกล) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ, วท.บ. (เทคโนโลยีการผลิต) มหาวิทยาลัยราชภัฏสกลนคร",
 		specialty: "คอมพิวเตอร์เพื่อการออกแบบเขียนแบบ, เทคโนโลยีเครื่องจักรกลอัตโนมัติ, การออกแบบนวัตกรรมเพื่อชุมชน",
@@ -234,7 +234,10 @@ const staffMembers = [ /*
 ];
 ---
 
-<Layout title="คณาจารย์และบุคลากร - สาขาวิชาวิศวกรรมเครื่องกลและการผลิต">
+<Layout
+	title="คณาจารย์และบุคลากร - สาขาวิชาวิศวกรรมเครื่องกลและการผลิต"
+	description="ทำเนียบคณาจารย์ประจำสาขาวิชาวิศวกรรมเครื่องกลและการผลิต คณะเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยราชภัฏสกลนคร พร้อมวุฒิการศึกษาและความเชี่ยวชาญ"
+>
 	<Header />
 	<main class="page-container">
 		<!-- Hero Section -->
@@ -285,7 +288,7 @@ const staffMembers = [ /*
 						<div class="faculty-card">
 							<div class="card-avatar-wrapper">
 								{lect.image ? (
-									<img src={`${base}${lect.image}`} alt={lect.name} class="avatar-image" />
+									<img src={`${base}${lect.image}`} alt={lect.name} class="avatar-image" loading="lazy" />
 								) : (
 									<div class="avatar-circle">{lect.avatar}</div>
 								)}

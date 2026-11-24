@@ -5,7 +5,21 @@ export const CONTACT_INFO = {
   shortAddress: "อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยราชภัฏสกลนคร",
   facebook: "https://www.facebook.com/profile.php?id=100063624909945",
   line: "#",
-  youtube: "#"
+  youtube: "#",
+  facultyUrl: "https://itech.snru.ac.th",
+  universityUrl: "https://snru.ac.th"
+};
+
+export const ADMISSIONS_INFO = {
+  year: "2570",
+  round: "รอบที่ 3",
+  roundDetail: "รอบรับตรงทั่วไป · สมัครออนไลน์ · ไม่ต้องสอบข้อเขียน",
+  deadlineText: "สมัครได้ถึง 7 พฤษภาคม 2570",
+  deadlineDay: "07",
+  deadlineMonth: "พ.ค.",
+  deadlineMonthEn: "MAY",
+  applicationUrl: "https://regis.snru.ac.th/65_r3_sigup",
+  guideUrl: "https://regis.snru.ac.th/step_regis.php"
 };
 
 export const KVDB_CONFIG = {

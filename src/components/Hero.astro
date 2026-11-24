@@ -1,12 +1,12 @@
 ---
+import { ADMISSIONS_INFO } from "../config.js";
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const applicationUrl = "https://regis.snru.ac.th/65_r3_sigup";
-const applicationGuideUrl = "https://regis.snru.ac.th/step_regis.php";
 ---
 <section class="hero">
 	<div class="hero-overlay"></div>
 	<div class="hero-content fade-in">
-		<span class="hero-badge">รับสมัครนักศึกษาใหม่ ปีการศึกษา 2570 · รอบที่ 3</span>
+		<span class="hero-badge">รับสมัครนักศึกษาใหม่ ปีการศึกษา {ADMISSIONS_INFO.year} · {ADMISSIONS_INFO.round}</span>
 		<h1>
 			<span class="highlight">เรียนวิศวกรรมจากการลงมือทำจริง</span>
 			<span class="highlight-alt">ต่อยอดสู่อุตสาหกรรม</span>
@@ -16,14 +16,14 @@ const applicationGuideUrl = "https://regis.snru.ac.th/step_regis.php";
 			เลือกเส้นทางที่ใช่จาก 2 หลักสูตร: วิศวกรรมเครื่องกลและการผลิต หรือวิศวกรรมการผลิตและโลจิสติกส์
 		</p>
 		<div class="admission-info" aria-label="ข้อมูลรับสมัคร">
-			<strong>สมัครได้ถึง 7 พฤษภาคม 2570</strong>
-			<span>รอบรับตรงทั่วไป · สมัครออนไลน์ · ไม่ต้องสอบข้อเขียน</span>
+			<strong>{ADMISSIONS_INFO.deadlineText}</strong>
+			<span>{ADMISSIONS_INFO.roundDetail}</span>
 		</div>
 		<div class="hero-ctas">
-			<a href={applicationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">สมัครเรียน ปี 2570</a>
+			<a href={ADMISSIONS_INFO.applicationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">สมัครเรียน ปี {ADMISSIONS_INFO.year}</a>
 			<a href={`${base}/programs`} class="btn btn-outline">ดูหลักสูตร</a>
 		</div>
-		<a href={applicationGuideUrl} target="_blank" rel="noopener noreferrer" class="hero-guide">
+		<a href={ADMISSIONS_INFO.guideUrl} target="_blank" rel="noopener noreferrer" class="hero-guide">
 			ดูขั้นตอนสมัครและคุณสมบัติผู้สมัคร <span aria-hidden="true">↗</span>
 		</a>
 	</div>

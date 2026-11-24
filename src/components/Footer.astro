@@ -1,6 +1,7 @@
 ---
 import { CONTACT_INFO, KVDB_CONFIG } from '../config.js';
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const hasUrl = (url: string | undefined) => Boolean(url && url !== "#");
 ---
 
 <footer class="main-footer">
@@ -16,15 +17,21 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 				มุ่งเน้นการสร้างวิศวกรและนักเทคโนโลยีมืออาชีพที่พร้อมรับใช้สังคมและพัฒนาประเทศ
 			</p>
 			<div class="social-links">
-				<a href={CONTACT_INFO.facebook} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
-					<i class="bi bi-facebook"></i>
-				</a>
-				<a href={CONTACT_INFO.line} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Line">
-					<i class="bi bi-line"></i>
-				</a>
-				<a href={CONTACT_INFO.youtube} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">
-					<i class="bi bi-youtube"></i>
-				</a>
+				{hasUrl(CONTACT_INFO.facebook) && (
+					<a href={CONTACT_INFO.facebook} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+						<i class="bi bi-facebook"></i>
+					</a>
+				)}
+				{hasUrl(CONTACT_INFO.line) && (
+					<a href={CONTACT_INFO.line} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Line">
+						<i class="bi bi-line"></i>
+					</a>
+				)}
+				{hasUrl(CONTACT_INFO.youtube) && (
+					<a href={CONTACT_INFO.youtube} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">
+						<i class="bi bi-youtube"></i>
+					</a>
+				)}
 			</div>
 		</div>
 
@@ -35,6 +42,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 				<li><a href={`${base}/about`}>เกี่ยวกับเรา (About)</a></li>
 				<li><a href={`${base}/programs`}>หลักสูตรที่เปิดสอน (Programs)</a></li>
 				<li><a href={`${base}/faculty`}>คณาจารย์และบุคลากร (Faculty)</a></li>
+				<li><a href={`${base}/internship-prep`}>เตรียมฝึกงาน (Internship Prep)</a></li>
 				<li><a href={`${base}/contact`}>ติดต่อเรา (Contact)</a></li>
 			</ul>
 		</div>
@@ -72,7 +80,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 				<span> ครั้ง</span>
 			</div>
 			<div class="bottom-links">
-				<a href="https://snru.ac.th" target="_blank" rel="noopener noreferrer">เว็บไซต์มหาวิทยาลัย (SNRU)</a>
+				<a href={CONTACT_INFO.facultyUrl} target="_blank" rel="noopener noreferrer">คณะเทคโนโลยีอุตสาหกรรม (ITECH)</a>
+				<span class="bottom-divider" aria-hidden="true">•</span>
+				<a href={CONTACT_INFO.universityUrl} target="_blank" rel="noopener noreferrer">เว็บไซต์มหาวิทยาลัย (SNRU)</a>
 			</div>
 		</div>
 	</div>
@@ -268,8 +278,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		color: var(--accent);
 		font-weight: 700;
 	}
+	.bottom-links {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.bottom-divider {
+		color: #4A5568;
+	}
 	.bottom-links a {
-		color: #718096;
+		color: #A0AEC0;
 	}
 	.bottom-links a:hover {
 		color: var(--white);

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { ADMISSIONS_INFO } from '../../config.js';
 
 export function getStaticPaths() {
   return [
@@ -49,9 +50,16 @@ export function getStaticPaths() {
 const { id } = Astro.params;
 const { name, nameEn, faculty, degree, credits, fee, overview, curriculum, requirements } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const curriculumPdf =
+	id === "mechanical-production"
+		? `${base}/documents/หลักสูตรวิศวกรรมเครื่องกลและการผลิต วศ.บ.pdf`
+		: null;
 ---
 
-<Layout title={`${name} - หลักสูตรที่เปิดสอน`}>
+<Layout
+	title={`${name} - หลักสูตรที่เปิดสอน`}
+	description={`${name} (${nameEn}) ${faculty} มหาวิทยาลัยราชภัฏสกลนคร — ${credits} ค่าธรรมเนียม ${fee}`}
+>
 	<Header />
 	<main class="page-container">
 		<div class="container">
@@ -90,10 +98,42 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 				</div>
 				
 				<div class="side-content">
+					<div class="side-card apply-card">
+						<span class="apply-badge">รับสมัคร ปี {ADMISSIONS_INFO.year} · {ADMISSIONS_INFO.round}</span>
+						<h3>สมัครเข้าศึกษาต่อ</h3>
+						<p>{ADMISSIONS_INFO.deadlineText} ({ADMISSIONS_INFO.roundDetail})</p>
+						<a
+							href={ADMISSIONS_INFO.applicationUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="btn-apply"
+						>
+							สมัครเรียนออนไลน์ ปี {ADMISSIONS_INFO.year} ↗
+						</a>
+						<a
+							href={ADMISSIONS_INFO.guideUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="apply-guide-link"
+						>
+							ดูขั้นตอนและคุณสมบัติการสมัคร ↗
+						</a>
+					</div>
+
 					<div class="side-card requirements-card">
 						<h3>คุณสมบัติผู้สมัคร</h3>
 						<p>{requirements}</p>
 					</div>
+
+					{curriculumPdf && (
+						<div class="side-card pdf-card">
+							<h3>เอกสารแผนการศึกษา (PDF)</h3>
+							<p>ดาวน์โหลดรายละเอียดโครงสร้างรายวิชาและแผนการเรียนตลอดหลักสูตร</p>
+							<a href={curriculumPdf} target="_blank" rel="noopener noreferrer" class="btn-contact">
+								เปิดดู / ดาวน์โหลด มคอ.2 (PDF) ↗
+							</a>
+						</div>
+					)}
 
 					<div class="side-card contact-card">
 						<h3>สอบถามข้อมูลหลักสูตร</h3>
@@ -252,6 +292,65 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		margin-top: 0;
 		margin-bottom: 15px;
 		font-weight: 700;
+	}
+	.apply-card {
+		background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+		color: var(--white);
+		border: none;
+	}
+	.apply-card h3 {
+		color: var(--white);
+		margin-bottom: 10px;
+	}
+	.apply-card p {
+		color: #E2E8F0;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		margin: 0 0 18px 0;
+	}
+	.apply-badge {
+		display: inline-block;
+		background: rgba(212, 175, 55, 0.2);
+		border: 1px solid var(--accent);
+		color: var(--accent);
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 4px 12px;
+		border-radius: 20px;
+		margin-bottom: 12px;
+	}
+	.btn-apply {
+		display: block;
+		text-align: center;
+		background: var(--accent);
+		color: var(--primary-dark);
+		padding: 12px 18px;
+		border-radius: 8px;
+		font-weight: 700;
+		font-size: 0.95rem;
+		transition: var(--transition);
+		margin-bottom: 12px;
+	}
+	.btn-apply:hover {
+		background: #e6c54d;
+		transform: translateY(-2px);
+	}
+	.apply-guide-link {
+		display: block;
+		text-align: center;
+		color: var(--white);
+		font-size: 0.85rem;
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+	.apply-guide-link:hover {
+		color: var(--accent);
+	}
+	.pdf-card p {
+		line-height: 1.6;
+		font-size: 0.9rem;
+		color: var(--secondary);
+		margin-bottom: 18px;
 	}
 	.requirements-card {
 		border-top: 4px solid var(--accent);

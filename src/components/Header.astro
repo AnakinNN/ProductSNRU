@@ -1,5 +1,25 @@
 ---
+import { CONTACT_INFO } from "../config.js";
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const rawPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const normalizedPath = base && rawPath.startsWith(base)
+	? (rawPath.slice(base.length) || "/")
+	: rawPath;
+
+const navItems = [
+	{ href: `${base}/`, path: "/", label: "หน้าแรก (Home)" },
+	{ href: `${base}/about`, path: "/about", label: "เกี่ยวกับเรา (About)" },
+	{ href: `${base}/programs`, path: "/programs", label: "หลักสูตร (Programs)" },
+	{ href: `${base}/faculty`, path: "/faculty", label: "คณาจารย์ (Faculty)" },
+	{ href: `${base}/internship-prep`, path: "/internship-prep", label: "เตรียมฝึกงาน (Internship Prep)" },
+	{ href: `${base}/contact`, path: "/contact", label: "ติดต่อเรา (Contact)" },
+];
+
+const isActive = (itemPath: string) =>
+	itemPath === "/"
+		? normalizedPath === "/"
+		: normalizedPath === itemPath || normalizedPath.startsWith(`${itemPath}/`);
 ---
 
 <header>
@@ -7,11 +27,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		<div class="container">
 			<span class="university-name">มหาวิทยาลัยราชภัฏสกลนคร • Sakon Nakhon Rajabhat University</span>
 			<div class="top-links">
-				<a href="https://snru.ac.th" target="_blank" rel="noopener noreferrer">SNRU Main Site</a>
+				<a href={CONTACT_INFO.facultyUrl} target="_blank" rel="noopener noreferrer">คณะเทคโนโลยีอุตสาหกรรม (ITECH)</a>
+				<span class="top-divider" aria-hidden="true">•</span>
+				<a href={CONTACT_INFO.universityUrl} target="_blank" rel="noopener noreferrer">SNRU Main Site</a>
 			</div>
 		</div>
 	</div>
-	<nav class="main-nav">
+	<nav class="main-nav" aria-label="เมนูหลัก">
 		<div class="container">
 			<div class="logo">
 				<a href={`${base}/`}>
@@ -20,19 +42,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 				</a>
 			</div>
 
-			<button class="mobile-toggle" aria-label="Toggle Menu">
+			<button
+				type="button"
+				class="mobile-toggle"
+				aria-label="Toggle Menu"
+				aria-expanded="false"
+				aria-controls="primary-nav"
+			>
 				<span></span>
 				<span></span>
 				<span></span>
 			</button>
 
-			<ul class="nav-links">
-				<li><a href={`${base}/`}>หน้าแรก (Home)</a></li>
-				<li><a href={`${base}/about`}>เกี่ยวกับเรา (About)</a></li>
-				<li><a href={`${base}/programs`}>หลักสูตร (Programs)</a></li>
-				<li><a href={`${base}/faculty`}>คณาจารย์ (Faculty)</a></li>
-				<li><a href={`${base}/internship-prep`}>เตรียมฝึกงาน (Internship Prep)</a></li>
-				<li><a href={`${base}/contact`}>ติดต่อเรา (Contact)</a></li>
+			<ul class="nav-links" id="primary-nav">
+				{navItems.map((item) => {
+					const active = isActive(item.path);
+					return (
+						<li>
+							<a
+								href={item.href}
+								class={active ? "active" : undefined}
+								aria-current={active ? "page" : undefined}
+							>
+								{item.label}
+							</a>
+						</li>
+					);
+				})}
 			</ul>
 		</div>
 	</nav>
@@ -42,9 +78,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 	const toggle = document.querySelector(".mobile-toggle");
 	const navLinks = document.querySelector(".nav-links");
 
-	toggle?.addEventListener("click", () => {
-		navLinks?.classList.toggle("active");
-		toggle?.classList.toggle("active");
+	const closeMenu = () => {
+		navLinks?.classList.remove("active");
+		toggle?.classList.remove("active");
+		toggle?.setAttribute("aria-expanded", "false");
+	};
+
+	toggle?.addEventListener("click", (e) => {
+		e.stopPropagation();
+		const isOpen = navLinks?.classList.toggle("active") ?? false;
+		toggle.classList.toggle("active", isOpen);
+		toggle.setAttribute("aria-expanded", String(isOpen));
+	});
+
+	navLinks?.querySelectorAll("a").forEach((link) => {
+		link.addEventListener("click", closeMenu);
+	});
+
+	document.addEventListener("click", (e) => {
+		if (!navLinks?.classList.contains("active")) return;
+		const target = e.target;
+		if (target instanceof Node && !navLinks.contains(target) && !toggle?.contains(target)) {
+			closeMenu();
+		}
+	});
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape") closeMenu();
 	});
 </script>
 
@@ -73,6 +133,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 20px;
+	}
+	.top-links {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+	.top-divider {
+		color: rgba(255, 255, 255, 0.5);
 	}
 	.top-links a {
 		font-weight: bold;
@@ -126,9 +195,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 		transition: var(--transition);
 		text-align: center;
 	}
-	.nav-links a:hover {
+	.nav-links a:hover,
+	.nav-links a.active {
 		color: var(--primary);
 		background: var(--primary-light);
+	}
+	.nav-links a.active {
+		font-weight: 700;
 	}
 
 	/* Mobile Styles */

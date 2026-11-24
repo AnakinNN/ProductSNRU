@@ -10,6 +10,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #1",
     company: "บริษัทออกแบบวิศวกรรมเครื่องกล (Design Engineering)",
+    companyGroup: "บริษัทออกแบบวิศวกรรมเครื่องกล",
+    industry: "Other",
     strength: "ช่วยบริษัทลดเวลาในการทำงาน",
     weakness: "การแก้ไขปัญหาไม่ตรงจุด",
     gap: "ขาดการเรียนรู้เครื่องจักรใหม่ๆ",
@@ -20,6 +22,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #2",
     company: "บริษัทบริการตรวจสอบทางวิศวกรรมแบบไม่ทำลาย (NDT Inspection)",
+    companyGroup: "บริษัทบริการตรวจสอบทางวิศวกรรมแบบไม่ทำลาย",
+    industry: "Other",
     strength: "ชอบเรียนรู้",
     weakness: "อาจจะไม่ตรงสายที่เรียนเท่าไหร่",
     gap: "คำศัพท์เฉพาะทางและภาษา",
@@ -30,6 +34,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #3",
     company: "โรงงานผลิตและประกอบแบตเตอรี่ยานยนต์ไฟฟ้า (EV Battery)",
+    companyGroup: "โรงงานผลิตและประกอบแบตเตอรี่ยานยนต์ไฟฟ้า",
+    industry: "Batteries",
     strength: "สามารถทำงานร่วมกับพนักงานคนอื่นในบริษัทได้ดี",
     weakness: "คุยกับพนักงานชาวจีนไม่ได้",
     gap: "ขาดความรู้ด้านภาษาจีน",
@@ -40,6 +46,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #4",
     company: "บริษัทติดตั้งระบบวิศวกรรมไฟฟ้าและเครื่องกล (M&E Contractor)",
+    companyGroup: "บริษัทติดตั้งระบบวิศวกรรมไฟฟ้าและเครื่องกล",
+    industry: "Other",
     strength: "ทำงานได้บรรลุตามเป้าหมายที่ได้รับมอบหมาย",
     weakness: "ไม่มี",
     gap: "ความขยัน อดทน และความรู้พื้นฐานทางเทคนิค",
@@ -50,6 +58,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #5",
     company: "โรงงานฉีดพลาสติกและชิ้นส่วนยานยนต์ (Automotive Plastics)",
+    companyGroup: "โรงงานฉีดพลาสติกและชิ้นส่วนยานยนต์",
+    industry: "Plastics",
     strength: "เข้าทำงานตรงเวลาสม่ำเสมอ",
     weakness: "การทำงานยังค่อนข้างช้าและไม่เรียบร้อย",
     gap: "ความรู้ความเข้าใจทางด้านภาษา",
@@ -60,6 +70,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #6",
     company: "โรงงานผลิตชิ้นส่วนกลไกยานยนต์ (Precision Machining)",
+    companyGroup: "โรงงานผลิตชิ้นส่วนกลไกยานยนต์",
+    industry: "Machining",
     strength: "เรียนรู้ระบบของบริษัทได้ดีมาก",
     weakness: "ไม่มีข้อเสียร้ายแรง",
     gap: "ทักษะและการเรียนรู้งานด้านการซ่อมบำรุง",
@@ -70,6 +82,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #7",
     company: "โรงงานฉีดพลาสติกและชิ้นส่วนยานยนต์ (สาขาชลบุรี)",
+    companyGroup: "โรงงานฉีดพลาสติกและชิ้นส่วนยานยนต์ (สาขาชลบุรี)",
+    industry: "Plastics",
     strength: "ขยัน และมีความอดทนสูง",
     weakness: "สภาพแวดล้อมมีงานเสียเยอะเกินไป",
     gap: "ความรู้ด้านภาษาอังกฤษสำหรับสื่อสารหน้างาน",
@@ -80,6 +94,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #8",
     company: "โรงงานฉีดพลาสติกและชิ้นส่วนยานยนต์",
+    companyGroup: "โรงงานฉีดพลาสติกและชิ้นส่วนยานยนต์",
+    industry: "Plastics",
     strength: "ขยันและอดทน",
     weakness: "ชิ้นงานในสายผลิตเสียค่อนข้างบ่อย",
     gap: "การอ่าน Drawing วิศวกรรม",
@@ -90,6 +106,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #9",
     company: "โรงงานประกอบและผลิตชิ้นส่วนยานยนต์ (Automotive Assembly)",
+    companyGroup: "โรงงานประกอบและผลิตชิ้นส่วนยานยนต์",
+    industry: "Machining",
     strength: "กระตือรือร้น รับผิดชอบ มีทัศนคติเชิงบวก เปิดรับฟังคำแนะนำพร้อมปรับปรุง และทนแรงกดดันได้ดี",
     weakness: "การเข้าใจคำศัพท์ ภาษา และการใช้เครื่องมือแต่ละชนิด",
     gap: "ภาษาอังกฤษสำหรับอุตสาหกรรม",
@@ -100,6 +118,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #10",
     company: "โรงงานผลิตและประกอบแบตเตอรี่ยานยนต์ไฟฟ้า",
+    companyGroup: "โรงงานผลิตและประกอบแบตเตอรี่ยานยนต์ไฟฟ้า",
+    industry: "Batteries",
     strength: "สามารถใช้เครื่องมือด้านช่างและงานวิศวกรรมได้อย่างดี",
     weakness: "ทักษะการสื่อสารภาษาต่างประเทศและการใช้คอมพิวเตอร์",
     gap: "ทักษะคอมพิวเตอร์และการใช้งานโปรแกรมพื้นฐาน",
@@ -110,6 +130,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #11",
     company: "โรงงานอุตสาหกรรมแปรรูปน้ำตาล (Sugar Industry)",
+    companyGroup: "โรงงานอุตสาหกรรมแปรรูปน้ำตาล",
+    industry: "Other",
     strength: "ขยันทำงานตามมอบหมาย",
     weakness: "ไม่มีข้อเสียระบุ",
     gap: "การเตรียมพร้อมทักษะปฏิบัติก่อนทำงานจริงในชีวิตจริง",
@@ -120,6 +142,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #12",
     company: "บริษัทติดตั้งระบบวิศวกรรมไฟฟ้าและเครื่องกล",
+    companyGroup: "บริษัทติดตั้งระบบวิศวกรรมไฟฟ้าและเครื่องกล",
+    industry: "Other",
     strength: "สามารถปฏิบัติงานแพ็คแบตเตอรี่รถยนต์ไฟฟ้าได้",
     weakness: "ความรู้เชิงลึกยังไม่เท่าระดับที่จำเป็นต้องใช้",
     gap: "ทักษะภาษาการพูด เนื่องจากบริษัทมีคนต่างชาติเข้ามาดูงานบ่อย",
@@ -130,6 +154,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #13",
     company: "โรงงานผลิตอุปกรณ์ส่องสว่างยานยนต์ (Automotive Lighting & Electronics)",
+    companyGroup: "โรงงานผลิตอุปกรณ์ส่องสว่างยานยนต์",
+    industry: "Lighting",
     strength: "การทำงานออกแบบ ขยัน และมีความสามารถพิเศษ (เล่นกีต้าร์)",
     weakness: "ยังค้นหาจุดเด่นหรือจุดแข็งเฉพาะตัวของตัวเองไม่เจอ",
     gap: "ขาดความรู้เรื่องการผลิตแบบลีน (Lean Manufacturing)",
@@ -140,6 +166,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #14",
     company: "โรงงานผลิตอุปกรณ์ส่องสว่างยานยนต์",
+    companyGroup: "โรงงานผลิตอุปกรณ์ส่องสว่างยานยนต์",
+    industry: "Lighting",
     strength: "เรียนรู้เร็วและมีวินัยในตนเอง",
     weakness: "ทักษะภาษาอังกฤษอยู่ในระดับอ่อน",
     gap: "ระยะเวลาการฝึกค่อนข้างจำกัด และขาดความรู้เรื่อง Lean Manufacturing",
@@ -150,6 +178,8 @@ const studentFeedbacks = [
   {
     name: "รุ่นพี่ผู้ฝึกงาน #15",
     company: "โรงงานผลิตอุปกรณ์ส่องสว่างยานยนต์",
+    companyGroup: "โรงงานผลิตอุปกรณ์ส่องสว่างยานยนต์",
+    industry: "Lighting",
     strength: "ขยัน ตรงต่อเวลา และเรียนรู้ไว",
     weakness: "ยังมีการสื่อสารระหว่างทำงานค่อนข้างน้อย",
     gap: "ทักษะการประสานงานและการสื่อสาร (Communication)",
@@ -161,11 +191,14 @@ const studentFeedbacks = [
 
 // Summarized Statistics
 const totalStudents = studentFeedbacks.length;
-const companies = [...new Set(studentFeedbacks.map(s => s.company))];
+const companies = [...new Set(studentFeedbacks.map(s => s.companyGroup))];
 const uniqueCompaniesCount = companies.length;
 ---
 
-<Layout title="เตรียมความพร้อมฝึกงานอุตสาหกรรม - ผลการประเมินจากรุ่นพี่">
+<Layout
+  title="เตรียมความพร้อมฝึกงานอุตสาหกรรม - ผลการประเมินจากรุ่นพี่"
+  description="ระบบวิเคราะห์สมรรถนะและเตรียมความพร้อมก่อนฝึกงานอุตสาหกรรม จากแบบประเมินจริงของนักศึกษารุ่นพี่สาขาวิชาเครื่องกลการผลิตและอุตสาหการ มรภ.สกลนคร"
+>
   <Header />
 
   <main class="dashboard-page">
@@ -484,6 +517,7 @@ const uniqueCompaniesCount = companies.length;
                   data-suggestion={s.suggestion}
                   data-keywords={s.keywords.join(",")}
                   data-category={s.category}
+                  data-industry={s.industry}
                 >
                   <div class="card-top">
                     <span class="company-badge"><i class="bi bi-building"></i> {s.company}</span>
@@ -711,26 +745,9 @@ const uniqueCompaniesCount = companies.length;
         // Search condition
         const matchesSearch = textContent.includes(currentSearch);
         
-        // Filter condition
-        let matchesFilter = false;
-        if (currentFilter === "all") {
-          matchesFilter = true;
-        } else if (currentFilter === "Lighting") {
-          matchesFilter = company.includes("ส่องสว่าง");
-        } else if (currentFilter === "Plastics") {
-          matchesFilter = company.includes("พลาสติก");
-        } else if (currentFilter === "Batteries") {
-          matchesFilter = company.includes("แบตเตอรี่");
-        } else if (currentFilter === "Machining") {
-          matchesFilter = company.includes("ชิ้นส่วนกลไก") || company.includes("ประกอบ");
-        } else if (currentFilter === "Other") {
-          // Does not match Lighting, Plastics, Batteries, Machining
-          matchesFilter = !company.includes("ส่องสว่าง") && 
-                          !company.includes("พลาสติก") && 
-                          !company.includes("แบตเตอรี่") && 
-                          !company.includes("ชิ้นส่วนกลไก") && 
-                          !company.includes("ประกอบ");
-        }
+        // Filter condition (uses explicit industry tag to avoid keyword overlap)
+        const industry = card.getAttribute("data-industry") || "Other";
+        const matchesFilter = currentFilter === "all" || industry === currentFilter;
 
         if (matchesSearch && matchesFilter) {
           card.style.display = "flex";

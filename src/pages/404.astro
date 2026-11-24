@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<Layout
+	title="ไม่พบหน้าที่ต้องการ (404) - สาขาวิชาเครื่องกลการผลิตและอุตสาหการ"
+	description="ไม่พบหน้าเว็บที่คุณค้นหา กลับสู่หน้าแรกหรือเลือกชมหลักสูตรของสาขาวิชาเครื่องกลการผลิตและอุตสาหการ มหาวิทยาลัยราชภัฏสกลนคร"
+>
+	<Header />
+	<main class="not-found-page">
+		<div class="container">
+			<div class="not-found-card fade-in">
+				<span class="error-code">404</span>
+				<h1>ไม่พบหน้าที่คุณต้องการ</h1>
+				<p class="subtitle">Page Not Found</p>
+				<p class="desc">
+					ลิงก์ที่คุณเข้าถึงอาจถูกย้าย เปลี่ยนชื่อ หรือไม่มีอยู่ในระบบ กรุณาเลือกไปยังหน้าหลักด้านล่าง
+				</p>
+				<div class="actions">
+					<a href={`${base}/`} class="btn-primary">กลับหน้าแรก (Home)</a>
+					<a href={`${base}/programs`} class="btn-secondary">ดูหลักสูตรที่เปิดสอน</a>
+					<a href={`${base}/contact`} class="btn-outline">ติดต่อสาขาวิชา</a>
+				</div>
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.not-found-page {
+		min-height: 65vh;
+		display: flex;
+		align-items: center;
+		padding: 80px 20px;
+		background: var(--background);
+	}
+	.container {
+		max-width: 720px;
+		margin: 0 auto;
+		width: 100%;
+	}
+	.not-found-card {
+		background: var(--white);
+		border-radius: var(--border-radius);
+		padding: 60px 40px;
+		text-align: center;
+		box-shadow: var(--shadow-md);
+		border-top: 6px solid var(--primary);
+	}
+	.error-code {
+		display: inline-block;
+		font-size: 4.5rem;
+		font-weight: 700;
+		line-height: 1;
+		color: var(--primary);
+		margin-bottom: 12px;
+	}
+	h1 {
+		margin: 0 0 6px 0;
+		font-size: 1.9rem;
+		color: var(--text);
+	}
+	.subtitle {
+		margin: 0 0 18px 0;
+		color: var(--accent);
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		font-size: 0.9rem;
+	}
+	.desc {
+		margin: 0 auto 32px;
+		max-width: 520px;
+		color: var(--secondary);
+		line-height: 1.7;
+	}
+	.actions {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+	.actions a {
+		padding: 12px 22px;
+		border-radius: 8px;
+		font-weight: 700;
+		font-size: 0.92rem;
+		transition: var(--transition);
+	}
+	.btn-primary {
+		background: var(--primary);
+		color: var(--white);
+	}
+	.btn-primary:hover {
+		background: var(--primary-dark);
+		transform: translateY(-2px);
+	}
+	.btn-secondary {
+		background: var(--primary-light);
+		color: var(--primary-dark);
+	}
+	.btn-secondary:hover {
+		background: var(--accent);
+		color: #1A202C;
+		transform: translateY(-2px);
+	}
+	.btn-outline {
+		border: 1.5px solid #CBD5E0;
+		color: var(--secondary);
+	}
+	.btn-outline:hover {
+		border-color: var(--primary);
+		color: var(--primary);
+	}
+</style>

@@ -1,52 +1,83 @@
 ---
+import { ADMISSIONS_INFO } from "../config.js";
+
 const events = [
 	{
-		day: "18",
-		month: "ก.ค.",
-		monthEn: "JUL",
-		title: "การประชุมวิชาการเทคโนโลยีการผลิตและอุตสาหการระดับชาติ 2569",
-		titleEn: "National Manufacturing Tech & Industrial Engineering Conference 2026",
-		time: "09:00 - 16:30 น.",
-		location: "หอประชุมใหญ่ มหาวิทยาลัยราชภัฏสกลนคร"
+		day: ADMISSIONS_INFO.deadlineDay,
+		month: ADMISSIONS_INFO.deadlineMonth,
+		monthEn: ADMISSIONS_INFO.deadlineMonthEn,
+		yearLabel: `พ.ศ. ${ADMISSIONS_INFO.year}`,
+		status: "upcoming",
+		statusLabel: "กำลังเปิดรับสมัคร",
+		title: `ปิดรับสมัครนักศึกษาใหม่ ปีการศึกษา ${ADMISSIONS_INFO.year} (${ADMISSIONS_INFO.round})`,
+		titleEn: "2027 Admissions Application Deadline (Round 3)",
+		time: "สมัครออนไลน์ตลอด 24 ชม.",
+		location: "ระบบรับสมัครนักศึกษา มหาวิทยาลัยราชภัฏสกลนคร",
+		link: ADMISSIONS_INFO.applicationUrl,
+		linkText: "สมัครเรียนออนไลน์"
+	},
+	{
+		day: "07",
+		month: "ส.ค.",
+		monthEn: "AUG",
+		yearLabel: "พ.ศ. 2569",
+		status: "past",
+		statusLabel: "กิจกรรมประจำปี 2569",
+		title: "การนำเสนอโครงงานนวัตกรรมและเทคโนโลยีเครื่องกลการผลิตประจำปี",
+		titleEn: "Annual Mechanical & Industrial Innovation Project Showcase",
+		time: "09:00 - 16:00 น.",
+		location: "ห้องโถงนิทรรศการ อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม"
 	},
 	{
 		day: "25",
 		month: "ก.ค.",
 		monthEn: "JUL",
+		yearLabel: "พ.ศ. 2569",
+		status: "past",
+		statusLabel: "กิจกรรมประจำปี 2569",
 		title: "ปฐมนิเทศนักศึกษาใหม่ ประจำปีการศึกษา 2569",
 		titleEn: "Department Freshmen Welcome & Orientation 2026",
 		time: "08:30 - 12:00 น.",
 		location: "ห้องสัมมนา อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม"
 	},
 	{
-		day: "07",
-		month: "ส.ค.",
-		monthEn: "AUG",
-		title: "การนำเสนอโครงงานนวัตกรรมและเทคโนโลยีเครื่องกลการผลิตประจำปี",
-		titleEn: "Annual Mechanical & Industrial Innovation Project Showcase",
-		time: "09:00 - 16:00 น.",
-		location: "ห้องโถงนิทรรศการ อาคารปฏิบัติการเทคโนโลยีอุตสาหกรรม"
+		day: "18",
+		month: "ก.ค.",
+		monthEn: "JUL",
+		yearLabel: "พ.ศ. 2569",
+		status: "past",
+		statusLabel: "กิจกรรมประจำปี 2569",
+		title: "การประชุมวิชาการเทคโนโลยีการผลิตและอุตสาหการระดับชาติ 2569",
+		titleEn: "National Manufacturing Tech & Industrial Engineering Conference 2026",
+		time: "09:00 - 16:30 น.",
+		location: "หอประชุมใหญ่ มหาวิทยาลัยราชภัฏสกลนคร"
 	}
 ];
 ---
 <section class="events-section">
 	<div class="container">
-		<h2 class="section-title">ปฏิทินกิจกรรม / Upcoming Events</h2>
+		<h2 class="section-title">ปฏิทินกิจกรรมและกำหนดการ / Events & Schedule</h2>
 		<div class="events-list">
 			{events.map(event => (
-				<div class="event-item">
+				<div class={`event-item ${event.status === "upcoming" ? "event-upcoming" : "event-past"}`}>
 					<div class="date-box">
 						<span class="day">{event.day}</span>
 						<span class="month">{event.month}</span>
-						<span class="month-en">{event.monthEn}</span>
+						<span class="month-en">{event.monthEn} · {event.yearLabel.replace("พ.ศ. ", "")}</span>
 					</div>
 					<div class="event-details">
+						<span class={`event-status ${event.status}`}>{event.statusLabel}</span>
 						<h3>{event.title}</h3>
 						<p class="title-en">{event.titleEn}</p>
 						<div class="meta">
 							<span>🕒 {event.time}</span>
 							<span>📍 {event.location}</span>
 						</div>
+						{event.link && (
+							<a href={event.link} target="_blank" rel="noopener noreferrer" class="event-cta">
+								{event.linkText} <span aria-hidden="true">↗</span>
+							</a>
+						)}
 					</div>
 				</div>
 			))}
@@ -81,6 +112,43 @@ const events = [
 		gap: 25px;
 		border-left: 5px solid var(--primary);
 		box-shadow: var(--shadow-sm);
+	}
+	.event-item.event-upcoming {
+		border-left-color: var(--accent);
+		background: linear-gradient(90deg, rgba(212, 175, 55, 0.1) 0%, var(--background) 35%);
+	}
+	.event-item.event-past {
+		opacity: 0.9;
+	}
+	.event-status {
+		display: inline-block;
+		font-size: 0.72rem;
+		font-weight: 700;
+		padding: 3px 10px;
+		border-radius: 20px;
+		margin-bottom: 8px;
+	}
+	.event-status.upcoming {
+		background: var(--accent);
+		color: #1A202C;
+	}
+	.event-status.past {
+		background: #E2E8F0;
+		color: var(--secondary);
+	}
+	.event-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 12px;
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: var(--primary);
+	}
+	.event-cta:hover {
+		color: var(--primary-dark);
+		text-decoration: underline;
+		text-underline-offset: 4px;
 	}
 	.event-item:hover {
 		transform: translateX(10px);
